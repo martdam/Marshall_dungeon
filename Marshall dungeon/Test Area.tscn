@@ -1,3 +1,45 @@
-[gd_scene format=2]
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Ui/Player_Ui.tscn" type="PackedScene" id=2]
+[ext_resource path="res://collectables/Magic_scroll.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Traps/base_trap.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Ui/camera.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource( 1 )]
+position = Vector2( 53, 381 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource( 2 )]
+
+[node name="Scroll" parent="." instance=ExtResource( 3 )]
+position = Vector2( 110, 389 )
+Explosion_route = "agua_ruta"
+
+[node name="Scroll2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 110, 356 )
+Explosion_route = "fuego_ruta"
+Explosion_atribe = "fuego"
+
+[node name="Scroll3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 106, 432 )
+Explosion_route = "hielo_ruta"
+Explosion_atribe = "hielo"
+
+[node name="Node2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( -8, 385 )
+
+[node name="Node2D2" parent="." instance=ExtResource( 5 )]
+position = Vector2( -201, 227 )
+zoom = Vector2( 0.5, 0.5 )
+drag_margin_left = 0.4
+drag_margin_top = 0.4
+drag_margin_right = 0.4
+drag_margin_bottom = 0.4
+editor_draw_drag_margin = true
+
+[connection signal="Add_new_Power" from="Player" to="CanvasLayer/Control" method="_on_Player_Add_new_Power"]
+[connection signal="change_spell_atribute" from="CanvasLayer/Control" to="Player" method="_on_Control_change_spell_atribute"]
