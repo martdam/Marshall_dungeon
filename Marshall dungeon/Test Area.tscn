@@ -3,7 +3,7 @@
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Ui/Player_Ui.tscn" type="PackedScene" id=2]
 [ext_resource path="res://collectables/Magic_scroll.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Traps/base_trap.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemys/Patroll_Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Ui/camera.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D"]
@@ -29,17 +29,22 @@ position = Vector2( 106, 432 )
 Explosion_route = "hielo_ruta"
 Explosion_atribe = "hielo"
 
-[node name="Node2D" parent="." instance=ExtResource( 4 )]
-position = Vector2( -8, 385 )
-
 [node name="Node2D2" parent="." instance=ExtResource( 5 )]
-position = Vector2( -201, 227 )
-zoom = Vector2( 0.5, 0.5 )
+position = Vector2( 17, 400 )
 drag_margin_left = 0.4
 drag_margin_top = 0.4
 drag_margin_right = 0.4
 drag_margin_bottom = 0.4
 editor_draw_drag_margin = true
 
+[node name="KinematicBody2D" parent="." instance=ExtResource( 4 )]
+pause_mode = 2
+position = Vector2( -121, 482 )
+
+[node name="KinematicBody2D" parent="KinematicBody2D" index="0"]
+MAX_SPEED = 70.0
+
 [connection signal="Add_new_Power" from="Player" to="CanvasLayer/Control" method="_on_Player_Add_new_Power"]
 [connection signal="change_spell_atribute" from="CanvasLayer/Control" to="Player" method="_on_Control_change_spell_atribute"]
+
+[editable path="KinematicBody2D"]

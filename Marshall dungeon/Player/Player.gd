@@ -1,8 +1,9 @@
 extends KinematicBody2D
 
 #--------------------------------Vida-------------------------------------------------
-var alive =true;
-var lives =3;
+var alive:bool =true
+export (int) var  max_hp=10
+var healt:int =3;
 
 var hited = false
 var direction_hited
@@ -27,25 +28,22 @@ signal Add_new_Power
 var status= 0
 
 
-
-
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func _physics_process(delta):
 	
-	pass # Replace with function body.
+	if alive :
+		motion_ctrl(delta)
+		atack_ctrl()
 
 
-func _input(event):
+func atack_ctrl() ->void:
 	
-	if event.is_action_pressed("left_click") and ready_shoot_1:
+	if Input.is_action_pressed("Atack_normal") and ready_shoot_1:
 			var goal = get_global_mouse_position()
 			ready_shoot_1 = false
 			$basic_shoot_timer.start()
 			shoot("",goal)
 	
-	if event.is_action_pressed("right_click") and actual_power != 0 and ready_shoot_2:
+	if Input.is_action_pressed("Atack_special") and actual_power != 0 and ready_shoot_2:
 			var goal = get_global_mouse_position()
 			ready_shoot_2=false
 			$Special_soot_Timer.start()
@@ -53,10 +51,9 @@ func _input(event):
 	
 	
 
-func _physics_process(delta):
-	
+func motion_ctrl(delta: float) -> void:
 	var motion = Vector2();
-	if alive and !hited:
+	if !hited:
 		if (Input.is_action_pressed("ui_up")):
 			motion += Vector2(0, -1);
 			#direction = "up";
@@ -70,18 +67,17 @@ func _physics_process(delta):
 			motion += Vector2(1, 0)
 			#direction = "right";
 		
-		
-		
 		motion = motion.normalized() * Motion_Speed* delta;
 		
-		
 		var collision = move_and_collide(motion)
+		
 		if collision: 
 			pass;
 		
-	elif hited:
+	else:
 			move_and_collide(direction_hited*Motion_Speed*delta)
-		
+	
+
 
 func shoot(atribute, destination):
 	
@@ -99,9 +95,9 @@ func shoot(atribute, destination):
 func hit(damage , atribute, direction):
 	if !hited:
 		$hit_timer.start()
-		lives =lives-1
+		healt =healt-damage
 		
-		if(lives <=0):
+		if(healt <=0):
 			die();
 		else:
 			direction_hited =  direction
@@ -113,15 +109,12 @@ func die():
 	hide()
 	emit_signal("dead")
 
-func cure():
-	if lives<3:
-		lives+=1;
+func cure(var hp_restored : int):
+	
+	healt += hp_restored;
+	if healt > max_hp:
+		healt= max_hp
 
-
-func _set_shot_offset(value):
-	shot_offset = value
-	if Engine.editor_hint:
-		update()
 
 
 func Atribe_change(new_status):
@@ -141,33 +134,28 @@ func Atribe_change(new_status):
 			status = new_status
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
+func get_path():
+	return get_node(".")
 
 
+func Add_power(Explosion_atribe,Explosion_route):
+	power_list.append(Explosion_route)
+	emit_signal("Add_new_Power",Explosion_atribe)
+	
+
+func _set_shot_offset(value):
+	shot_offset = value
 
 func _on_Control_change_spell_atribute(new_atribute):
 	actual_power = new_atribute
 	
 
-
-func Add_power(Explosion_atribe,Explosion_route):
-	
-	power_list.append(Explosion_route)
-	emit_signal("Add_new_Power",Explosion_atribe)
-
-
 func _on_hit_timer_timeout():
 	hited = false;
-	pass # Replace with function body.
-
 
 func _on_basic_shoot_timer_timeout():
 	ready_shoot_1 = true
-	pass # Replace with function body.
-
 
 func _on_Special_soot_Timer_timeout():
 	ready_shoot_2 = true
-	pass # Replace with function body.
