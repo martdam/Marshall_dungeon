@@ -54,6 +54,15 @@ shape = SubResource( 5 )
 
 [node name="Attack_Timer" type="Timer" parent="KinematicBody2D"]
 wait_time = 2.0
+one_shot = true
+
+[node name="Status_Timer" type="Timer" parent="KinematicBody2D"]
+wait_time = 10.0
+one_shot = true
+
+[node name="Burn_Timer" type="Timer" parent="KinematicBody2D"]
+wait_time = 0.9
+one_shot = true
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 190, -60 )
@@ -66,3 +75,5 @@ position = Vector2( -6, -146 )
 [connection signal="body_entered" from="KinematicBody2D/Attack_Area2" to="KinematicBody2D" method="_on_Attack_Area2_body_entered"]
 [connection signal="body_exited" from="KinematicBody2D/Attack_Area2" to="KinematicBody2D" method="_on_Attack_Area2_body_exited"]
 [connection signal="timeout" from="KinematicBody2D/Attack_Timer" to="KinematicBody2D" method="_on_Attack_Timer_timeout"]
+[connection signal="timeout" from="KinematicBody2D/Status_Timer" to="KinematicBody2D" method="_on_Status_Timer_timeout"]
+[connection signal="timeout" from="KinematicBody2D/Burn_Timer" to="KinematicBody2D" method="_on_Burn_Timer_timeout"]

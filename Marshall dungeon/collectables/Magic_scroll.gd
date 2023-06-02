@@ -2,7 +2,8 @@ extends Area2D
 
 
 export (String) var Explosion_route = "" 
-export (String) var Explosion_atribe = "Agua" 
+export (String) var Explosion_atribe_txt = "Agua"  
+export (int,0,3 ) var Explosion_atribe_value = 1
 
 
 # Declare member variables here. Examples:
@@ -18,7 +19,7 @@ func _ready():
 
 func _on_Scroll_body_entered(body):
 	
-	body.Add_power(Explosion_atribe,Explosion_route)
+	body.Add_power(Explosion_atribe_txt,Explosion_route,Explosion_atribe_value)
 	queue_free()
 	
 

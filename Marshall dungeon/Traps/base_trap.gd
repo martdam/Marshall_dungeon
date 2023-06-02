@@ -16,7 +16,7 @@ func change_active():
 
 func _on_Node2D_body_entered(body):
 	if body.collision_layer ==1:
-		body.hit(damage, atribute, global_position.direction_to(body.global_position))
+		body.hit(damage, atribute, global_position)
 	
 
 func Atribe_change(new_status):

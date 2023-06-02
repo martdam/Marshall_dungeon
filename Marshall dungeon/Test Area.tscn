@@ -17,20 +17,24 @@ position = Vector2( 53, 381 )
 
 [node name="Scroll" parent="." instance=ExtResource( 3 )]
 position = Vector2( 110, 389 )
-Explosion_route = "agua_ruta"
+Explosion_route = "res://Powers/Basic_Shoot.tscn"
 
 [node name="Scroll2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 110, 356 )
-Explosion_route = "fuego_ruta"
-Explosion_atribe = "fuego"
+Explosion_route = "res://Powers/Basic_Shoot.tscn"
+Explosion_atribe_txt = "fuego"
+Explosion_atribe_value = 2
 
 [node name="Scroll3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 106, 432 )
-Explosion_route = "hielo_ruta"
-Explosion_atribe = "hielo"
+monitorable = false
+Explosion_route = "res://Powers/Basic_Shoot.tscn"
+Explosion_atribe_txt = "hielo"
+Explosion_atribe_value = 3
 
 [node name="Node2D2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 17, 400 )
+zoom = Vector2( 0.5, 0.5 )
 drag_margin_left = 0.4
 drag_margin_top = 0.4
 drag_margin_right = 0.4
