@@ -1,0 +1,19 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform vec4 color : hint_color = vec4(1.0);
+uniform bool froze = false;
+
+void fragment()
+{
+	vec4 color_original= texture(TEXTURE,UV);
+	vec4 color_final  = color_original * color ;
+	
+	if(froze){
+		color_final.rgb += mix(color_original.rgb,color.rgb,0.4);
+	}
+	
+	COLOR = color_final;
+}"

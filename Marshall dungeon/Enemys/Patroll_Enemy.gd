@@ -163,15 +163,21 @@ func Atribe_change(new_status) -> void:
 	
 
 func apply_status():
+	var color_stat
 	match status:
 		1:
+			color_stat = Color(0.321569, 0.4, 0.631373)
 			afectar_propiedades(MAX_SPEED,damage/2)
 		2:
+			color_stat = Color(1, 0.505882, 0.333333)
 			burning()
 		3:
+			color_stat = Color(0.458824, 0.941176, 1)
 			afectar_propiedades(MAX_SPEED*0.6,damage)
 		_:
-			pass
+			color_stat = Color.white
+	
+	material.set_shader_param("color",color_stat)
 	$Status_Timer.start(10)
 
 func afectar_propiedades(afected_vel:float, afected_dmg:int, congelar:bool =false):
@@ -179,11 +185,15 @@ func afectar_propiedades(afected_vel:float, afected_dmg:int, congelar:bool =fals
 	damage = afected_dmg	
 	congelado=congelar
 	if congelar:
+		material.set_shader_param("color", Color(0.458824, 0.941176, 1))
+		material.set_shader_param("froze",congelar)
 		$Status_Timer.start(5)
 
 func restore_properties():
 	status=status_base
 	$Burn_Timer.stop()
+	material.set_shader_param("color", Color.white)
+	material.set_shader_param("froze",false)
 	afectar_propiedades( original_stats[0], original_stats[1])
 
 func burning()->void:

@@ -1,7 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Enemys/Patroll_Enemy.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Shaders/enemy_shader.tres" type="Shader" id=3]
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 3 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/froze = false
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -27,6 +33,7 @@ radius = 130.0
 [node name="patroll_Enemy" type="Position2D"]
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+material = SubResource( 6 )
 collision_layer = 4
 collision_mask = 2
 script = ExtResource( 1 )
@@ -35,6 +42,7 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
+use_parent_material = true
 frames = SubResource( 2 )
 
 [node name="Detection_Area" type="Area2D" parent="KinematicBody2D"]
