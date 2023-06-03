@@ -1,9 +1,10 @@
 extends KinematicBody2D
 
-#--------------------------------Vida-------------------------------------------------
+#------------------------------------Vida-------------------------------------------------
 var alive:bool =true
 export (int) var  max_health=10
 var health:int =3;
+signal dead
 
 var hited = false
 var direction_hited
@@ -11,7 +12,12 @@ var direction_hited
 #---------------------------------movimiento---------------------------------------------
 export (float, 20,200) var Motion_Speed = 100;
 var congelado = false
-#---------------------------------disparo---------------------------------------------
+
+#----------------------------------animacion---------------------------------------------
+onready var animation_tree = get_node("AnimationTree")
+onready var animation_mode = animation_tree.get("parameters/playback")
+
+#-----------------------------------disparo---------------------------------------------
 export(PackedScene) var bulletScene = load("res://Powers/Basic_Shoot.tscn")
 var b_origin_offset = Vector2()
 export (float) var shot_offset = 10 
@@ -57,23 +63,35 @@ func motion_ctrl(delta: float) -> void:
 	if !hited:
 		if (Input.is_action_pressed("ui_up")):
 			motion += Vector2(0, -1);
-			#direction = "up";
+			
 		if (Input.is_action_pressed("ui_down")):
 			motion += Vector2(0, 1)
-			#direction ="down";
+			
 		if (Input.is_action_pressed("ui_left")):
+			$AnimatedSprite.flip_h=true
+			$AnimatedSprite/PlayerHand2/Weapons.rotation_degrees = -18 
 			motion += Vector2(-1, 0)
-			#direction = "left";
+			
 		if (Input.is_action_pressed("ui_right")):
 			motion += Vector2(1, 0)
-			#direction = "right";
+			
+			$AnimatedSprite/PlayerHand2/Weapons.rotation_degrees = 18
+			$AnimatedSprite.flip_h = false
+		
+		if motion != Vector2.ZERO:
+			animation_tree.set("parameters/conditions/moving",true);
+			animation_tree.set("parameters/conditions/idle",false);
+			animation_tree.set("parameters/Run/blend_position",motion);
+		else:
+			intercambiar_manos()
+			animation_tree.set("parameters/conditions/idle",true);
+			animation_tree.set("parameters/conditions/moving",false);
 		
 		motion = motion.normalized() * Motion_Speed* delta;
 		
-		var collision = move_and_collide(motion)
+		move_and_collide(motion)
 		
-		if collision: 
-			pass;
+		
 		
 	else:
 			move_and_collide(direction_hited*Motion_Speed*delta)
@@ -82,6 +100,8 @@ func motion_ctrl(delta: float) -> void:
 
 func shoot( b_destination, b_explode = false):
 	
+	
+	animation_tree.set("parameters/conditions/attack",true);
 	b_origin_offset = global_position.direction_to(b_destination)*shot_offset;
 	var bullet = bulletScene.instance()
 	
@@ -99,11 +119,16 @@ func shoot( b_destination, b_explode = false):
 
 func hit(damage , atribute, direction):
 	
-	if !hited:
+	
+	if !hited and alive:
 		$hit_timer.start()
 		health =health-damage
 		
+		animation_tree.set("parameters/conditions/hurt",true);
 		if(health <=0):
+			
+			animation_tree.set("parameters/conditions/live",false);
+			animation_tree.set("parameters/conditions/dead",true);
 			die();
 		else:
 			direction_hited =  direction.direction_to(global_position)
@@ -112,7 +137,6 @@ func hit(damage , atribute, direction):
 
 func die():
 	alive = false
-	hide()
 	emit_signal("dead")
 
 func cure(var hp_restored : int):
@@ -217,3 +241,11 @@ func _on_Status_Timer_timeout():
 
 func _on_Burn_Timer_timeout():
 	burning()
+
+func intercambiar_manos() ->void:
+	var value =-1
+	if $AnimatedSprite.flip_h:
+		value =1
+	$AnimatedSprite/PlayerHand.z_index = -value
+	$AnimatedSprite/PlayerHand2.z_index = value  
+	
