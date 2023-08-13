@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Ui/Player_Ui.tscn" type="PackedScene" id=2]
 [ext_resource path="res://collectables/Magic_scroll.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Enemys/Patroll_Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemys/scenas/little_dragon.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Ui/camera.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Player/Player_Hand.png" type="Texture" id=6]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
 
 [node name="Node2D" type="Node2D"]
 
@@ -17,24 +22,24 @@ position = Vector2( 53, 381 )
 
 [node name="Scroll" parent="." instance=ExtResource( 3 )]
 position = Vector2( 110, 389 )
-Explosion_route = "res://Powers/Basic_Shoot.tscn"
+Explosion_route = "res://Powers/Explosions/Water_expl.tscn"
 
 [node name="Scroll2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 110, 356 )
-Explosion_route = "res://Powers/Basic_Shoot.tscn"
+Explosion_route = "res://Powers/Explosions/Fire_expl.tscn"
 Explosion_atribe_txt = "fuego"
 Explosion_atribe_value = 2
 
 [node name="Scroll3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 106, 432 )
 monitorable = false
-Explosion_route = "res://Powers/Basic_Shoot.tscn"
+Explosion_route = "res://Powers/Explosions/Ice_expl.tscn"
 Explosion_atribe_txt = "hielo"
 Explosion_atribe_value = 3
 
 [node name="Node2D2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 17, 400 )
-zoom = Vector2( 0.5, 0.5 )
+zoom = Vector2( 0.4, 0.4 )
 drag_margin_left = 0.4
 drag_margin_top = 0.4
 drag_margin_right = 0.4
@@ -47,6 +52,22 @@ position = Vector2( -121, 482 )
 
 [node name="KinematicBody2D" parent="KinematicBody2D" index="0"]
 MAX_SPEED = 70.0
+
+[node name="AnimationTree" parent="KinematicBody2D/KinematicBody2D" index="8"]
+parameters/playback = SubResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( -54, 351 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 27, 59 )
+scale = Vector2( 2, 2 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D"]
+texture = ExtResource( 6 )
 
 [connection signal="Add_new_Power" from="Player" to="CanvasLayer/Control" method="_on_Player_Add_new_Power"]
 [connection signal="change_spell_atribute" from="CanvasLayer/Control" to="Player" method="_on_Control_change_spell_atribute"]

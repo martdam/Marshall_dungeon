@@ -28,6 +28,7 @@ func _end():
 	
 	if explode:
 		var explosion = explosion_power.instance()
+		explosion.rotation = rotation
 		explosion.position = global_position
 		get_tree().current_scene.add_child(explosion)
 	queue_free()
@@ -52,4 +53,6 @@ func _set_direction(value):
 
 
 func _on_Node2D_body_entered(body):
-	body.hit(damage,atribute,global_position)
+	if body.collision_layer & (1^1|1^4):
+		body.hit(damage,atribute,global_position)
+	_end()
