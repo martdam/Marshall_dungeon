@@ -25,6 +25,7 @@ func shoot():
 
 
 func _on_pressure_plate_pressed():
+	print("shoot")
 	shoot()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

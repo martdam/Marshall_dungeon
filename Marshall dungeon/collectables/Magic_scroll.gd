@@ -3,7 +3,7 @@ extends Area2D
 
 export (String) var Explosion_route = "" 
 export (String) var Explosion_atribe_txt = "Agua"  
-export (int,0,3 ) var Explosion_atribe_value = 1
+export (int,1,3 ) var Explosion_atribe_value = 1
 
 
 # Declare member variables here. Examples:
@@ -13,6 +13,7 @@ export (int,0,3 ) var Explosion_atribe_value = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Sprite.set_frame(Explosion_atribe_value-1)
 	pass # Replace with function body.
 
 

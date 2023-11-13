@@ -8,24 +8,45 @@ export var direction = Vector2.RIGHT setget _set_direction
 var extra_distance = 50
 var minimun_way = Vector2(extra_distance,extra_distance)
 var bullet_speed = 100
+export (bool) var move = false
 
-
+onready var animation_tree = get_node("AnimationTree")
 export(PackedScene) var explosion_power = load("res://Powers/Basic_Shoot.tscn") setget _set_explosion
 
 
 func _ready():
 	minimun_way =minimun_way*direction
+	if animation_tree != null:
+		match atribute:
+			1:
+				animation_tree.set("parameters/conditions/Water",true);
+			2:  
+				animation_tree.set("parameters/conditions/Fire",true);
+			3:
+				animation_tree.set("parameters/conditions/Ice",true);
+			_:
+				animation_tree.set("parameters/conditions/Normal",true);
+		
+	
+	
 
 func _process(delta):
 	var velocity
+	
+ 
 	velocity = direction * bullet_speed 
-	position += velocity * delta
+	if move == true:
+		position += velocity * delta
+	
 	if global_position.distance_to(goal+minimun_way) < 1:
 		_end()
 	
 
 func _end():
-	
+	animation_tree.set("parameters/conditions/Water",false);
+	animation_tree.set("parameters/conditions/Fire",false);
+	animation_tree.set("parameters/conditions/Ice",false);
+	animation_tree.set("parameters/conditions/Normal",false);
 	if explode:
 		var explosion = explosion_power.instance()
 		explosion.rotation = rotation
@@ -35,9 +56,12 @@ func _end():
 
 func _set_atribute(value:int):
 	atribute = value
+	
+	
+	
 	if value != 0:
 		_set_damage(damage * 1.5)
- 
+	
 func _set_damage(value):
 	damage=value
 
@@ -56,3 +80,10 @@ func _on_Node2D_body_entered(body):
 	if body.collision_layer & (1^1|1^4):
 		body.hit(damage,atribute,global_position)
 	_end()
+
+
+func _on_Node2D_area_entered(area):
+	if area.collision_layer & (1^64):
+		_end()
+	
+	

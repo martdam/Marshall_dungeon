@@ -12,6 +12,10 @@ func _ready():
 
 func change_active():
 	set_collision_mask_bit(0,active)
+	if active:
+		show()
+	else:
+		hide()
 
 
 func _on_Node2D_body_entered(body):
@@ -19,5 +23,14 @@ func _on_Node2D_body_entered(body):
 
 
 func _on_Timer_timeout():
+	
 	active = !active
+	change_active()
+
+func _on_trap_core_breaked():
+	if get_parent() is Timer:
+		get_parent().stop()
+	active = false
+	change_active()
+
 

@@ -50,7 +50,7 @@ func atack_ctrl() ->void:
 			$basic_shoot_timer.start()
 			shoot(goal)
 	
-	if Input.is_action_pressed("Atack_special") and actual_power != 0 and ready_shoot_2:
+	if Input.is_action_pressed("Atack_special") and actual_power > 0 and ready_shoot_2:
 			var goal = get_global_mouse_position()
 			ready_shoot_2=false
 			$Special_soot_Timer.start()
@@ -112,6 +112,7 @@ func shoot( b_destination, b_explode = false):
 	if b_explode:
 		bullet.explosion_power = power_list[actual_power-1]
 		bullet.atribute = power_list[actual_power]
+		print( power_list[actual_power])
 	
 	
 	get_tree().current_scene.add_child(bullet)
