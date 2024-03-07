@@ -663,9 +663,9 @@ graph_offset = Vector2( -139.216, 43.8841 )
 
 [node name="Player" type="KinematicBody2D"]
 material = SubResource( 2 )
-position = Vector2( 1, 2 )
 collision_mask = 2
 script = ExtResource( 1 )
+shot_offset = 15.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 1 )

@@ -3,7 +3,7 @@ extends KinematicBody2D
 #------------------------------------Vida-------------------------------------------------
 var alive:bool =true
 export (int) var  max_health=10
-var health:int =3;
+var health:int =30;
 signal dead
 
 var hited = false
@@ -106,7 +106,7 @@ func shoot( b_destination, b_explode = false):
 	var bullet = bulletScene.instance()
 	
 	bullet.explode = b_explode
-	bullet.position = global_position+b_origin_offset
+	bullet.position = position + b_origin_offset
 	bullet.direction = b_origin_offset.normalized()
 	bullet.goal = b_destination
 	if b_explode:
@@ -135,6 +135,9 @@ func hit(damage , atribute, direction):
 			direction_hited =  direction.direction_to(global_position)
 			hited = true;
 			Atribe_change(atribute)
+		
+
+
 
 func die():
 	alive = false

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/skeleton_.png-6c9d469385a2b5d021d0d5af6bf53cc4.stex"
+path="res://.import/water wave.png-226c185b17c08e410e5c1e9ff8a69784.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemys/comunes/skeleton_.png"
-dest_files=[ "res://.import/skeleton_.png-6c9d469385a2b5d021d0d5af6bf53cc4.stex" ]
+source_file="res://Assets/Proyectiles/water wave.png"
+dest_files=[ "res://.import/water wave.png-226c185b17c08e410e5c1e9ff8a69784.stex" ]
 
 [params]
 

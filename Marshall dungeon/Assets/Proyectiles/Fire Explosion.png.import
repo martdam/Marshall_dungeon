@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/skeleton_.png-6c9d469385a2b5d021d0d5af6bf53cc4.stex"
+path="res://.import/Fire Explosion.png-0e65ab432e79ae2d0a01cd5d3da5572a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemys/comunes/skeleton_.png"
-dest_files=[ "res://.import/skeleton_.png-6c9d469385a2b5d021d0d5af6bf53cc4.stex" ]
+source_file="res://Assets/Proyectiles/Fire Explosion.png"
+dest_files=[ "res://.import/Fire Explosion.png-0e65ab432e79ae2d0a01cd5d3da5572a.stex" ]
 
 [params]
 

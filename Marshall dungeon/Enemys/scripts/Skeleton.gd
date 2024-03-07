@@ -91,7 +91,7 @@ func _physics_process(delta):
 		WAITING:
 			Waiting()
 		CHASE:
-			Chase(delta)
+			Chase()
 		ATTACK:
 			Attack()
 		PATROLL:
@@ -99,16 +99,15 @@ func _physics_process(delta):
 			if hited:
 				navigate()
 			else:
-				Patroll(delta)
+				Patroll()
 		DODGE:
-			Dodge(delta)
+			Dodge()
 		_:
 			state=PATROLL
 	
-	if actstate!= state:
-	
-		print(actstate," - ", state)
-		actstate=state
+	#if actstate!= state: imprimir cambio de estado
+	#	print(actstate," - ", state)
+	#	actstate=state
 	
 
 #-------------------------extra functions-------------------------
@@ -144,6 +143,7 @@ func check_player_on_attack_distance():
 			in_attack_distance = true
 		else:
 			in_attack_distance = false
+			attacking=false
 
 func add_patroll_points() -> void:
 	for n in range(0,get_child_count()):
@@ -207,7 +207,7 @@ func move(target,delta, speed = MAX_SPEED) -> void:
 	velocity +=steering
 	velocity = move_and_slide(velocity)
 
-func Chase(delta:float):
+func Chase():
 	if check_player_on_sight():
 		
 		if path.size()>0 and path[path.size()-1].distance_to(player.global_position) >30:
@@ -220,7 +220,7 @@ func Chase(delta:float):
 	else:
 		state = PATROLL
 
-func Dodge(delta: float):
+func Dodge():
 	if!Ready_to_attack:
 		if path[path.size()-1] .distance_to(get_circle_position(random_num,50)) > 40:
 			point =get_circle_position(random_num,50)
@@ -229,7 +229,7 @@ func Dodge(delta: float):
 	else:
 		state= ATTACK
 
-func Patroll(delta: float):
+func Patroll():
 	
 	if check_player_on_sight(): 
 		state= CHASE
@@ -253,28 +253,29 @@ func Waiting() -> void:
 
 #-------------------------combat functions-------------------------
 func Attack() -> void:
-	if check_player_on_sight() and Ready_to_attack and !congelado and !attacking :
+	if  check_player_on_sight() and in_attack_distance and Ready_to_attack and !congelado and !attacking :
 		animation_tree.set("parameters/conditions/Run",false);
 		animation_tree.set("parameters/conditions/Attack",true);
-		att_point = player.global_position + (attack_distance*2 * global_position.direction_to(player.global_position))
+		att_point = player.global_position + (attack_distance*0.5 * global_position.direction_to(player.global_position))
 		generate_path(true,[global_position,att_point])
 		
-	elif !check_player_on_sight() and !in_attack_distance:
+	elif check_player_on_sight() and !in_attack_distance :
+		animation_tree.set("parameters/conditions/Attack",false);
 		state= CHASE
 		
-	elif !Ready_to_attack and !attacking:
+	elif !Ready_to_attack and !attacking :
+		animation_tree.set("parameters/conditions/Attack",false);
 		new_rand_number()
 		point = get_circle_position(random_num,50)
 		generate_path()
 		state = DODGE
-		
-	elif attacking:
+	
+	if attacking:
 		navigate(MAX_SPEED*3)
 		Ready_to_attack = false
 		$Attack_Timer.start()
 		if global_position.distance_to(att_point)<=5: 
 			animation_tree.set("parameters/conditions/Attack",false);
-			animation_tree.set("parameters/conditions/Run",true);
 			attacking=false
 
 func hit(damage_taked , hit_att, direction):
