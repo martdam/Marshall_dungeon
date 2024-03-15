@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://collectables/Magic_scroll.gd" type="Script" id=1]
+[ext_resource path="res://collectables/Scripts/Magic_scroll.gd" type="Script" id=1]
 [ext_resource path="res://Assets/otros/Shadow.png" type="Texture" id=2]
 [ext_resource path="res://Assets/otros/Scrolls.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Music/sonidos/Recoger_obj.wav" type="AudioStream" id=4]

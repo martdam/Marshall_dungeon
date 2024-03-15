@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Traps/pressure_plate.gd" type="Script" id=1]
+[ext_resource path="res://Traps/Scripts/pressure_plate.gd" type="Script" id=1]
 [ext_resource path="res://Assets/otros/placa presion.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Music/sonidos/presure_plate_presed.wav" type="AudioStream" id=3]
 

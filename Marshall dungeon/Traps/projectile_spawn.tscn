@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Traps/projectile_spawn.gd" type="Script" id=1]
+[ext_resource path="res://Traps/Scripts/projectile_spawn.gd" type="Script" id=1]
 [ext_resource path="res://Assets/otros/placa presion.png" type="Texture" id=2]
 
 [node name="projectile spawn point" type="Position2D"]

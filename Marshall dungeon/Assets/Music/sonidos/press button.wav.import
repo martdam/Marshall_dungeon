@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/press button.wav-83b8e8ba829631c683f5ed3569c6db3b.sample"
+
+[deps]
+
+source_file="res://Assets/Music/sonidos/press button.wav"
+dest_files=[ "res://.import/press button.wav-83b8e8ba829631c683f5ed3569c6db3b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

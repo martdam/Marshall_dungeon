@@ -1,6 +1,6 @@
 extends Control
 
-export(String) var nivel_actual = "res://Test Area.tscn"
+export(String) var nivel_actual = "res://Levels/Tutorial.tscn"
 
 var nombre_escena:String
 
@@ -21,7 +21,7 @@ func _on_Salir_pressed():
 
 func _on_Menu_principal_pressed():
 	
-	nombre_escena = "res://Main menu.tscn"
+	nombre_escena = "res://Levels/Main Menu.tscn"
 	get_node("AnimationPlayer").play("fade-out")
 
 

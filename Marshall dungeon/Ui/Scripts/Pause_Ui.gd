@@ -18,7 +18,7 @@ func _on_Continuar_pressed():
 
 func _on_Volver_al_menu_pressed():
 	get_tree().paused = not get_tree().paused
-	get_tree().change_scene("res://Main menu.tscn")
+	get_tree().change_scene("res://Levels/Main Menu.tscn")
 
 
 func _on_Salir_pressed():

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://collectables/Heal_potion.gd" type="Script" id=1]
+[ext_resource path="res://collectables/Scripts/Heal_potion.gd" type="Script" id=1]
 [ext_resource path="res://Assets/otros/health potion.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Music/sonidos/Colect potion.wav" type="AudioStream" id=3]
 [ext_resource path="res://Assets/otros/Shadow.png" type="Texture" id=4]
