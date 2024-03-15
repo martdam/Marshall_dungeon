@@ -1,0 +1,19 @@
+[remap]
+
+importer="vnen.tiled_tileset_importer"
+type="TileSet"
+path="res://.import/Dungeon.tsx-8621d59178970ef03fcb82174b5f8c5a.res"
+
+[deps]
+
+source_file="res://Assets/Escenario/Dungeon.tsx"
+dest_files=[ "res://.import/Dungeon.tsx-8621d59178970ef03fcb82174b5f8c5a.res" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=false
+image_flags=7
+embed_internal_images=false
+save_tiled_properties=false
+post_import_script=""

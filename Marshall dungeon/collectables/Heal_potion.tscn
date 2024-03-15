@@ -1,9 +1,66 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://collectables/Heal_potion.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/otros/health potion.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Music/sonidos/Colect potion.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/otros/Shadow.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -1.11759e-08 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Shadow:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.666667, 0.328125 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -1.11759e-08 ), Vector2( 0, -4 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Shadow:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.33333, 0.328125 ), Vector2( 0.666667, 0.328125 ), Vector2( 1.33333, 0.328125 ) ]
+}
 
 [node name="Heal_Potion" type="Area2D"]
 collision_layer = 32
@@ -13,8 +70,22 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -9.53674e-07, -9.53674e-07 )
-scale = Vector2( 0.3125, 0.3125 )
+position = Vector2( 0, -1.11759e-08 )
+scale = Vector2( 1.61111, 1.86364 )
 texture = ExtResource( 2 )
 
+[node name="AudioPick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="Shadow" type="Sprite" parent="."]
+position = Vector2( 0, 12 )
+scale = Vector2( 0.666667, 0.328125 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 2 )
+anims/idle = SubResource( 3 )
+
 [connection signal="body_entered" from="." to="." method="_on_Heal_Potion_body_entered"]
+[connection signal="finished" from="AudioPick" to="." method="_on_AudioPick_finished"]

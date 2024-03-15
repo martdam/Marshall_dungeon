@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
 #------------------------------------Vida-------------------------------------------------
-var alive:bool =true
-export (int) var  max_health=10
-var health:int =30;
+export var alive:bool =true
+export (int, 30, 100) var max_health = 10
+export (int,  0, 100) var health = 30
 signal dead
 
 var hited = false
@@ -37,9 +37,12 @@ onready var original_stats=[Motion_Speed,damage]
 
 func _physics_process(delta):
 	
-	if alive :
+	if alive and !animation_tree.get("parameters/conditions/dead"):
 		motion_ctrl(delta)
 		atack_ctrl()
+	elif !alive:
+		die()
+
 
 
 func atack_ctrl() ->void:
@@ -59,7 +62,7 @@ func atack_ctrl() ->void:
 	
 
 func motion_ctrl(delta: float) -> void:
-	var motion = Vector2();
+	var motion = Vector2.ZERO;
 	if !hited:
 		if (Input.is_action_pressed("ui_up")):
 			motion += Vector2(0, -1);
@@ -82,7 +85,11 @@ func motion_ctrl(delta: float) -> void:
 			animation_tree.set("parameters/conditions/moving",true);
 			animation_tree.set("parameters/conditions/idle",false);
 			animation_tree.set("parameters/Run/blend_position",motion);
+			if !get_node("AudioPasos").playing:
+				get_node("AudioPasos").playing = true
 		else:
+			if get_node("AudioPasos").playing:
+				get_node("AudioPasos").playing = false
 			intercambiar_manos()
 			animation_tree.set("parameters/conditions/idle",true);
 			animation_tree.set("parameters/conditions/moving",false);
@@ -112,25 +119,25 @@ func shoot( b_destination, b_explode = false):
 	if b_explode:
 		bullet.explosion_power = power_list[actual_power-1]
 		bullet.atribute = power_list[actual_power]
-		print( power_list[actual_power])
+		#print( power_list[actual_power])
 	
 	
 	get_tree().current_scene.add_child(bullet)
 	
 
-func hit(damage , atribute, direction):
+func hit(damage_taked , atribute, direction):
 	
 	
 	if !hited and alive:
+		get_node("AudioDaño").play()
 		$hit_timer.start()
-		health =health-damage
+		health =health-damage_taked
 		
 		animation_tree.set("parameters/conditions/hurt",true);
 		if(health <=0):
 			
 			animation_tree.set("parameters/conditions/live",false);
 			animation_tree.set("parameters/conditions/dead",true);
-			die();
 		else:
 			direction_hited =  direction.direction_to(global_position)
 			hited = true;
@@ -140,7 +147,6 @@ func hit(damage , atribute, direction):
 
 
 func die():
-	alive = false
 	emit_signal("dead")
 
 func cure(var hp_restored : int):
@@ -212,7 +218,8 @@ func burning()->void:
 		var burn_dmg = max_health*0.01
 		if burn_dmg < 1: burn_dmg = 1
 		health -= burn_dmg
-		if health <= 0: die()
+		if health-burn_dmg <= 0:
+			hit(burn_dmg,2,position)
 
 
 
@@ -253,3 +260,12 @@ func intercambiar_manos() ->void:
 	$AnimatedSprite/PlayerHand.z_index = -value
 	$AnimatedSprite/PlayerHand2.z_index = value  
 	
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	
+	match anim_name:
+		"die":
+			print ("a")
+			die()
+

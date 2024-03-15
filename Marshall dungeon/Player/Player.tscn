@@ -1,9 +1,11 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/otros/weapons_.png" type="Texture" id=2]
 [ext_resource path="res://Shaders/player_shader.gdshader" type="Shader" id=3]
 [ext_resource path="res://Assets/Player/Player_Hand.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Music/sonidos/hurt_player.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Music/sonidos/pasos.mp3" type="AudioStream" id=6]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 3 )
@@ -243,6 +245,18 @@ tracks/11/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ false ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath(".:alive")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -490,6 +504,18 @@ tracks/5/keys = {
 "update": 0,
 "values": [ Vector2( 1.12109, -2.68021 ), Vector2( 4.90707, -0.0915756 ), Vector2( 4.90707, -0.0915756 ) ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath(".:alive")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "hurt"
@@ -621,6 +647,8 @@ xfade_time = 0.5
 [sub_resource type="AnimationNodeStateMachineTransition" id=55]
 switch_mode = 2
 auto_advance = true
+advance_condition = "live"
+priority = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=56]
 switch_mode = 2
@@ -654,7 +682,7 @@ states/die/node = SubResource( 32 )
 states/die/position = Vector2( 645, 250 )
 states/hurt/node = SubResource( 33 )
 states/hurt/position = Vector2( 464, 250 )
-transitions = [ "Idle", "Run", SubResource( 46 ), "Run", "Atack", SubResource( 48 ), "Idle", "hurt", SubResource( 49 ), "Run", "hurt", SubResource( 50 ), "Atack", "hurt", SubResource( 51 ), "Idle", "Atack", SubResource( 52 ), "hurt", "RESET", SubResource( 55 ), "RESET", "Idle", SubResource( 56 ), "Atack", "Idle", SubResource( 53 ), "Atack", "Run", SubResource( 54 ), "Run", "Idle", SubResource( 47 ), "RESET", "die", SubResource( 58 ) ]
+transitions = [ "Idle", "Run", SubResource( 46 ), "Run", "Atack", SubResource( 48 ), "Idle", "hurt", SubResource( 49 ), "Run", "hurt", SubResource( 50 ), "Atack", "hurt", SubResource( 51 ), "Idle", "Atack", SubResource( 52 ), "hurt", "RESET", SubResource( 55 ), "RESET", "Idle", SubResource( 56 ), "Atack", "Idle", SubResource( 53 ), "Atack", "Run", SubResource( 54 ), "Run", "Idle", SubResource( 47 ), "hurt", "die", SubResource( 58 ) ]
 start_node = "Idle"
 end_node = "die"
 graph_offset = Vector2( -139.216, 43.8841 )
@@ -740,6 +768,15 @@ parameters/conditions/idle = false
 parameters/conditions/live = true
 parameters/conditions/moving = false
 parameters/Run/blend_position = Vector2( -0.00154084, -0.0038023 )
+
+[node name="AudioPasos" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+volume_db = 10.0
+pitch_scale = 1.6
+
+[node name="AudioDaño" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+volume_db = 24.0
 
 [connection signal="timeout" from="hit_timer" to="." method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="basic_shoot_timer" to="." method="_on_basic_shoot_timer_timeout"]

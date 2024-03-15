@@ -23,23 +23,25 @@ func _ready():
 #	pass
 
 func disable(atribe):
+	var breaked=false
 	
 	match atribute:
 		1:
 			if atribe == 3:
-				emit_signal("breaked")
-				$AnimationTree.set("parameters/conditions/Activado",true);
+				breaked=true
 		2:
 			if atribe== 1:
-				emit_signal("breaked")
-				$AnimationTree.set("parameters/conditions/Activado",true);
+				breaked=true
 		3:
 			if atribe == 2:
-				emit_signal("breaked")
-				$AnimationTree.set("parameters/conditions/Activado",true);
+				breaked=true
 		_:
-				emit_signal("breaked")
-				$AnimationTree.set("parameters/conditions/Activado",true);
+				breaked=true;
+	
+	if breaked:
+		emit_signal("breaked")
+		$AnimationTree.set("parameters/conditions/Activado",true);
+		get_node("AudioBreak").play()
 
 
 func _on_trap_core_area_entered(area):

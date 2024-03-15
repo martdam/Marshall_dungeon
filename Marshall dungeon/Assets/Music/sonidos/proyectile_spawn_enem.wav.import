@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/proyectile_spawn_enem.wav-087b933be46b2143a6a5e0c186c9ddeb.sample"
+
+[deps]
+
+source_file="res://Assets/Music/sonidos/proyectile_spawn_enem.wav"
+dest_files=[ "res://.import/proyectile_spawn_enem.wav-087b933be46b2143a6a5e0c186c9ddeb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

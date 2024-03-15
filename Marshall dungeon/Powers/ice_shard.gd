@@ -15,6 +15,7 @@ export(PackedScene) var explosion_power = load("res://Powers/Explosions/Ice_expl
 
 
 func _ready():
+	get_node("AudioSpawn").play()
 	minimun_way =minimun_way*direction
 	if chain <2: 
 		explode=true
@@ -32,12 +33,21 @@ func _end():
 	if explode:
 		var explosion = explosion_power.instance()
 		explosion.rotation = rotation
-		explosion.position = global_position
+		explosion.position = position
 		explosion.chain = chain
+		explosion.damage = damage
 		get_tree().current_scene.add_child(explosion)
+	
+	despawn()
+	
+
+func despawn():
+	get_node("AudioChoque").play()
+	visible=false
+	set_collision_layer_bit(4,false)
+	yield(get_tree().create_timer(0.1), "timeout")	
 	queue_free()
 
- 
 func _set_goal(value):
 	goal=value
 
@@ -50,4 +60,4 @@ func _set_direction(value):
 func _on_Node2D_body_entered(body):
 	if body.collision_layer & (1^1|1^4):
 		body.hit(damage,atribute,global_position)
-	queue_free()
+	despawn()

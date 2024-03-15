@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Recoger_obj.wav-6f192c81a39c81d662ff11799781323c.sample"
+
+[deps]
+
+source_file="res://Assets/Music/sonidos/Recoger_obj.wav"
+dest_files=[ "res://.import/Recoger_obj.wav-6f192c81a39c81d662ff11799781323c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Powers/ice_shard.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Proyectiles/Shoots2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Music/sonidos/proyectile_spawn.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Music/sonidos/Proyectil_choque.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 6.5, 3 )
@@ -90,5 +92,14 @@ tree_root = SubResource( 9 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 10 )
+
+[node name="AudioSpawn" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+pitch_scale = 1.24
+
+[node name="AudioChoque" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = 5.0
+pitch_scale = 2.5
 
 [connection signal="body_entered" from="." to="." method="_on_Node2D_body_entered"]

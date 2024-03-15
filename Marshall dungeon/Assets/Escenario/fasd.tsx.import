@@ -1,0 +1,19 @@
+[remap]
+
+importer="vnen.tiled_tileset_importer"
+type="TileSet"
+path="res://.import/fasd.tsx-1581c672faea45cc5fa2d4d2c35a3e83.res"
+
+[deps]
+
+source_file="res://Assets/Escenario/fasd.tsx"
+dest_files=[ "res://.import/fasd.tsx-1581c672faea45cc5fa2d4d2c35a3e83.res" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=false
+image_flags=7
+embed_internal_images=false
+save_tiled_properties=false
+post_import_script=""

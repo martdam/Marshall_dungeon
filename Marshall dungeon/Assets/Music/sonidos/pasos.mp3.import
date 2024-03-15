@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/pasos.mp3-b8a625c714028d2041dc0ab9e107647c.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/sonidos/pasos.mp3"
+dest_files=[ "res://.import/pasos.mp3-b8a625c714028d2041dc0ab9e107647c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

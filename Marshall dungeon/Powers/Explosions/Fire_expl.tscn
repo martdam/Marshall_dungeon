@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Proyectiles/Fire Explosion.png" type="Texture" id=1]
 [ext_resource path="res://Powers/Explosions/Fire_expl.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Music/sonidos/fire explosion.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 3 )
@@ -112,7 +113,7 @@ tracks/3/keys = {
 
 [node name="fire_expl" type="Area2D"]
 collision_layer = 16
-collision_mask = 71
+collision_mask = 68
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="Sprite" parent="."]
@@ -127,3 +128,10 @@ shape = SubResource( 1 )
 autoplay = "Explode"
 anims/Explode = SubResource( 3 )
 anims/RESET = SubResource( 2 )
+
+[node name="AudioSpawn" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = 10.0
+pitch_scale = 1.5
+
+[connection signal="body_entered" from="." to="." method="_on_fire_expl_body_entered"]

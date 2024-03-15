@@ -1,24 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Proyectiles/Shoots.png" type="Texture" id=1]
 [ext_resource path="res://Powers/Explosions/Ice_expl.gd" type="Script" id=2]
-
-[sub_resource type="RectangleShape2D" id=1]
-
-[sub_resource type="RectangleShape2D" id=4]
 
 [sub_resource type="RectangleShape2D" id=5]
 
 [node name="ice_expl" type="Area2D"]
 collision_layer = 16
-collision_mask = 71
+collision_mask = 68
 script = ExtResource( 2 )
-
-[node name="coll_shape_N" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
-[node name="coll_shape_C" type="CollisionShape2D" parent="."]
-shape = SubResource( 4 )
 
 [node name="coll_shape_S" type="CollisionShape2D" parent="."]
 shape = SubResource( 5 )
@@ -58,4 +48,5 @@ position = Vector2( 25, -24 )
 [node name="Pos7" type="Position2D" parent="."]
 position = Vector2( -25, -24 )
 
+[connection signal="body_entered" from="." to="." method="_on_ice_expl_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

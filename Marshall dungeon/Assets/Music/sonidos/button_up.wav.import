@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/button_up.wav-a6872b7d714014a89733937a427ea040.sample"
+
+[deps]
+
+source_file="res://Assets/Music/sonidos/button_up.wav"
+dest_files=[ "res://.import/button_up.wav-a6872b7d714014a89733937a427ea040.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

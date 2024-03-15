@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Darkest Path - Jeremy Korpas.mp3-4c6266429828406d7e678f7cea364aad.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/bkg music/The Darkest Path - Jeremy Korpas.mp3"
+dest_files=[ "res://.import/The Darkest Path - Jeremy Korpas.mp3-4c6266429828406d7e678f7cea364aad.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

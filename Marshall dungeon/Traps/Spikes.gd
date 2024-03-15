@@ -16,16 +16,17 @@ func change_active():
 		
 		$AnimationTree.set("parameters/conditions/Hide",false);
 		$AnimationTree.set("parameters/conditions/Show",true);
+		get_node("AudioEspinasOn").play()
 	else:
 		$AnimationTree.set("parameters/conditions/Show",false);
 		$AnimationTree.set("parameters/conditions/Hide",true);
+		get_node("AudioEspinasOff").play()
 
 func _on_Node2D_body_entered(body):
 	body.hit(damage, atribute, global_position)
 
 
 func _on_Timer_timeout():
-	
 	active = !active
 	change_active()
 

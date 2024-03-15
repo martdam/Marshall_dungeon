@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/proyectile_spawn_2.wav-90a92b962d65628012563c640f7193e4.sample"
+
+[deps]
+
+source_file="res://Assets/Music/sonidos/proyectile_spawn_2.wav"
+dest_files=[ "res://.import/proyectile_spawn_2.wav-90a92b962d65628012563c640f7193e4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

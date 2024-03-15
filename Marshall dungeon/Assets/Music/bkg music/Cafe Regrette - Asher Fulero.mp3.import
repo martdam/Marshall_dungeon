@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Cafe Regrette - Asher Fulero.mp3-2a9dd3c252cc9e6af0f1f0b99bec5d14.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/bkg music/Cafe Regrette - Asher Fulero.mp3"
+dest_files=[ "res://.import/Cafe Regrette - Asher Fulero.mp3-2a9dd3c252cc9e6af0f1f0b99bec5d14.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Missing Persons - Jeremy Blake.mp3-dc492ae65c68c1758af421a1bde30cd3.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/bkg music/Missing Persons - Jeremy Blake.mp3"
+dest_files=[ "res://.import/Missing Persons - Jeremy Blake.mp3-dc492ae65c68c1758af421a1bde30cd3.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

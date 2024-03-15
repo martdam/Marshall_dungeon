@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/espinas on.wav-25691602476914ffa83c5c9ea0312749.sample"
+
+[deps]
+
+source_file="res://Assets/Music/sonidos/espinas on.wav"
+dest_files=[ "res://.import/espinas on.wav-25691602476914ffa83c5c9ea0312749.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

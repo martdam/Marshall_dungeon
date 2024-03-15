@@ -32,6 +32,7 @@ var levelNavigation: Navigation2D= null
 onready var lineOS = $LineOfSight
 
 #onready var line2 = $Line2D
+#var actstate = state
 var point:Vector2 = Vector2.ZERO
 
 var detect:bool = false
@@ -73,11 +74,11 @@ func _ready():
 	add_patroll_points()
 	actualizar_PP()
 
-var actstate = state
+
 #-------------------------------------------------------------------------
 
 func _physics_process(delta):
-	#line2.global_position = Vector2.ZERO
+#	line2.global_position = Vector2.ZERO
 	delta_t=delta
 	if die:
 		queue_free()
@@ -105,9 +106,9 @@ func _physics_process(delta):
 		_:
 			state=PATROLL
 	
-	#if actstate!= state: imprimir cambio de estado
-	#	print(actstate," - ", state)
-	#	actstate=state
+#	if actstate!= state: 
+#		print(actstate," - ", state)
+#		actstate=state
 	
 
 #-------------------------extra functions-------------------------
@@ -117,7 +118,7 @@ func generate_path(shorter:bool = false,destiny = [Vector2.ZERO,Vector2.ZERO]):
 		path = levelNavigation.get_simple_path(global_position,levelNavigation.get_closest_point(point),shorter)
 	if destiny != [Vector2.ZERO,Vector2.ZERO]:
 		path = destiny
-	#line2.points= path
+#	line2.points= path
 
 func new_rand_number() -> void:
 	var rng = RandomNumberGenerator.new()
@@ -287,6 +288,7 @@ func hit(damage_taked , hit_att, direction):
 	animation_tree.set("parameters/conditions/Attack",false);
 	animation_tree.set("parameters/conditions/Hurt",true);
 	
+	get_node("AudioDaño").play()
 	match hit_att:
 		Strong_against_att: 
 			hit_modifier = 0.5
@@ -298,6 +300,7 @@ func hit(damage_taked , hit_att, direction):
 	health -= damage_taked*hit_modifier
 	if(health <=0):
 		animation_tree.set("parameters/conditions/Die",true);
+		get_node("AudioMuerte").play()
 	else:
 		Atribe_change(hit_att)
 
@@ -359,10 +362,12 @@ func burning()->void:
 		$Burn_Timer.start()
 		var burn_dmg = max_healt*0.01
 		if burn_dmg < 1: burn_dmg = 1
-		health -= burn_dmg
-		if health <= 0: 
-			animation_tree.set("parameters/conditions/Hurt",true);
-			animation_tree.set("parameters/conditions/Die",true);
+		
+		if health -burn_dmg<=0:
+			hit(burn_dmg*2,2,Vector2.LEFT)
+		else:
+			health -= burn_dmg
+		
 
 #-------------------------link functions-------------------------
 func _on_Detection_Area_body_entered(body):

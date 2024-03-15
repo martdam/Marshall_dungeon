@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fire explosion.wav-47e4bf52d5dc9204f611e26f0ce96d1a.sample"
+
+[deps]
+
+source_file="res://Assets/Music/sonidos/fire explosion.wav"
+dest_files=[ "res://.import/fire explosion.wav-47e4bf52d5dc9204f611e26f0ce96d1a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

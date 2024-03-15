@@ -5,7 +5,7 @@ var dissable:bool = false
 
 
 func _on_pressure_plate_body_entered(body):
-	print("pressed")
+	get_node("AudioPress").play()
 	$AnimatedSprite.set_frame(2) 
 	emit_signal("pressed")
 

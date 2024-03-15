@@ -191,5 +191,7 @@ parameters/conditions/Agua = false
 parameters/conditions/Fuego = false
 parameters/conditions/Hielo = false
 
+[node name="AudioBreak" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="area_entered" from="." to="." method="_on_trap_core_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_trap_core_body_entered"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Dream It - TrackTribe.mp3-e3d9f004fa5c1fd7b4c2084e674b63d1.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/bkg music/Dream It - TrackTribe.mp3"
+dest_files=[ "res://.import/Dream It - TrackTribe.mp3-e3d9f004fa5c1fd7b4c2084e674b63d1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

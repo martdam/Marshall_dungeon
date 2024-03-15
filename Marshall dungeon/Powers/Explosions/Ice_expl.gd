@@ -20,10 +20,11 @@ func shoot_shards():
 	for shoot_pos in ice_dir:
 		
 		var bullet = bulletScene.instance()
-		bullet.position = global_position
+		bullet.position = position
 		bullet.direction = global_position.direction_to(array[shoot_pos]) .normalized()
 		bullet.goal = global_position
 		bullet.chain = chain
+		bullet.damage = damage/2
 		get_tree().current_scene.add_child(bullet)
 		
 	
@@ -33,3 +34,9 @@ func shoot_shards():
 func _on_Timer_timeout():
 	shoot_shards()
 	queue_free()
+
+
+func _on_ice_expl_body_entered(body):
+	if body.collision_layer & (1^1|1^4):
+		body.hit(damage,atribute,global_position)
+		queue_free()

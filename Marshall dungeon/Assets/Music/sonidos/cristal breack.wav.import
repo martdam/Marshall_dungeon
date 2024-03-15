@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cristal breack.wav-c591c5d34353d6d4022bb8c517244867.sample"
+
+[deps]
+
+source_file="res://Assets/Music/sonidos/cristal breack.wav"
+dest_files=[ "res://.import/cristal breack.wav-c591c5d34353d6d4022bb8c517244867.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

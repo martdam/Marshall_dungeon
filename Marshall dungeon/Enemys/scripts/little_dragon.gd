@@ -55,6 +55,9 @@ enum {
 }
 var state = PATROLL
 
+#onready var line2 = $Line2D
+#var actstate = state
+
 #----------------------animation------------------------------------------
 onready var animation_tree = get_node("AnimationTree")
 export (bool) var fire = false
@@ -72,7 +75,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	
+	#line2.global_position = Vector2.ZERO
 	if die:
 		queue_free()
 	
@@ -92,6 +95,9 @@ func _physics_process(delta):
 		_:
 			state=PATROLL
 	
+	#if actstate!= state:
+	#	print(actstate," - ", state)
+	#	actstate=state
 
 #-------------------------extra functions-------------------------
 func new_rand_number() -> void:
@@ -101,6 +107,7 @@ func new_rand_number() -> void:
 
 func navigate(delta:float):
 	if path.size()>1:
+		#line2.points= path
 		move(path[1],delta)
 		velocity = global_position.direction_to(path[1])* MAX_SPEED
 		
@@ -118,7 +125,7 @@ func navigate(delta:float):
 func generate_path(shorter:bool = false):
 	if player != null and levelNavigation != null:
 		path = levelNavigation.get_simple_path(global_position,levelNavigation.get_closest_point(point),shorter)
-
+	
 
 func check_player_on_sight() -> bool:
 	var collider = lineOS.get_collider()
@@ -253,6 +260,7 @@ func hit(damage_taked , hit_att, direction):
 		var hit_modifier 
 		
 		animation_tree.set("parameters/conditions/Hurt",true);
+		get_node("AudioDaño").play()
 		match hit_att:
 			Strong_against_att: 
 				hit_modifier = 0.5
@@ -265,6 +273,7 @@ func hit(damage_taked , hit_att, direction):
 		
 		if(health <=0):
 			animation_tree.set("parameters/conditions/Die",true);
+			get_node("AudioMuerte").play()
 		else:
 			Atribe_change(hit_att)
 
@@ -328,11 +337,11 @@ func burning()->void:
 		$Burn_Timer.start()
 		var burn_dmg = max_healt*0.01
 		if burn_dmg < 1: burn_dmg = 1
-		health -= burn_dmg
-		if health <= 0: 
-			animation_tree.set("parameters/conditions/Hurt",true);
-			animation_tree.set("parameters/conditions/Die",true);
-
+		if health -burn_dmg<=0:
+			hit(burn_dmg*2,2,Vector2.LEFT)
+		else:
+			health -= burn_dmg
+		
 #-------------------------link functions-------------------------
 func _on_Detection_Area_body_entered(body):
 	if body.is_in_group("Player") :

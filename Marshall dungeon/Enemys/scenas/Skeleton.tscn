@@ -1,8 +1,10 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Enemys/scripts/Skeleton.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Enemys/comunes/skeleton_.png" type="Texture" id=2]
 [ext_resource path="res://Shaders/enemy_shader.tres" type="Shader" id=3]
+[ext_resource path="res://Assets/Music/sonidos/hurt_enemies.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Music/sonidos/muerte eskeletos.wav" type="AudioStream" id=5]
 
 [sub_resource type="ShaderMaterial" id=6]
 shader = ExtResource( 3 )
@@ -421,7 +423,17 @@ parameters/conditions/Run = false
 parameters/conditions/Spawn = false
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
 width = 3.0
+
+[node name="AudioDaño" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = 7.0
+pitch_scale = 0.65
+
+[node name="AudioMuerte" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+volume_db = 5.0
 
 [connection signal="body_entered" from="Detection_Area" to="." method="_on_Detection_Area_body_entered"]
 [connection signal="body_exited" from="Detection_Area" to="." method="_on_Detection_Area_body_exited"]

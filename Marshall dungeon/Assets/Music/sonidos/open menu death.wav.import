@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/open menu death.wav-a6d086412d8c1a831acabea00b5b5101.sample"
+
+[deps]
+
+source_file="res://Assets/Music/sonidos/open menu death.wav"
+dest_files=[ "res://.import/open menu death.wav-a6d086412d8c1a831acabea00b5b5101.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

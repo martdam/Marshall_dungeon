@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Proyectiles/water wave.png" type="Texture" id=1]
 [ext_resource path="res://Powers/Explosions/Water_expl.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Music/sonidos/water_explo.wav" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -61,7 +62,7 @@ tracks/1/keys = {
 
 [node name="water_expl" type="KinematicBody2D"]
 collision_layer = 16
-collision_mask = 71
+collision_mask = 68
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="Sprite" parent="."]
@@ -69,6 +70,12 @@ position = Vector2( 0, -3.55271e-15 )
 scale = Vector2( 0.65, 0.6 )
 texture = ExtResource( 1 )
 hframes = 11
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2( 2, 0 )
+polygon = PoolVector2Array( 5, -10, 2, -16, 0, -18, 0, 18, 2, 16, 5, 10, 7, 0 )
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( 1, 0 )
@@ -80,11 +87,18 @@ anims/RESET = SubResource( 2 )
 anims/wave = SubResource( 3 )
 
 [node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 85, -1 )
+position = Vector2( 108, 0 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 autostart = true
 
+[node name="AudioSpawn" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 7, 0 )
+stream = ExtResource( 3 )
+volume_db = 10.0
+pitch_scale = 3.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

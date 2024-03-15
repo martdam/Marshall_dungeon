@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Traps/Spikes.gd" type="Script" id=1]
 [ext_resource path="res://Assets/otros/traps.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Music/sonidos/espinas on.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Music/sonidos/espinas off.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -126,5 +128,13 @@ active = true
 parameters/playback = SubResource( 10 )
 parameters/conditions/Hide = false
 parameters/conditions/Show = false
+
+[node name="AudioEspinasOn" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -5.0
+
+[node name="AudioEspinasOff" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -5.0
 
 [connection signal="body_entered" from="." to="." method="_on_Node2D_body_entered"]

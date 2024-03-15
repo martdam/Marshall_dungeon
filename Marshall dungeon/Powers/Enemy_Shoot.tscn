@@ -1,7 +1,9 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Powers/Basic_Shoot.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Proyectiles/Shoots2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Music/sonidos/Spawn_proyectile_3.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Music/sonidos/Proyectil_choque.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 7, 3 )
@@ -417,6 +419,15 @@ parameters/conditions/Fire = false
 parameters/conditions/Ice = false
 parameters/conditions/Normal = false
 parameters/conditions/Water = false
+
+[node name="AudioSpawn" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -11.47
+pitch_scale = 1.24
+
+[node name="AudioChoque" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 5.0
 
 [connection signal="area_entered" from="." to="." method="_on_Node2D_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Node2D_body_entered"]
