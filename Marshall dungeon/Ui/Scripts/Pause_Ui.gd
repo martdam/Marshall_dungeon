@@ -30,3 +30,8 @@ func _on_mouse_entered():
 
 func _on_button_down():
 	get_node("AudioButton_Down").play()
+
+
+func _on_Settings_pressed():
+	get_node("settings").visible=true
+	

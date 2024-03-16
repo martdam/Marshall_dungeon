@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Ui/Scripts/Pause_Ui.gd" type="Script" id=1]
 [ext_resource path="res://Assets/UI/Fonts/Spirit's Sword.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/Music/sonidos/open menu pause.wav" type="AudioStream" id=3]
 [ext_resource path="res://Assets/Music/sonidos/button_up.wav" type="AudioStream" id=4]
 [ext_resource path="res://Assets/Music/sonidos/on button.wav" type="AudioStream" id=5]
+[ext_resource path="res://Ui/Settings_Ui.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -19,6 +20,19 @@ use_filter = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxFlat" id=5]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 30
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=9]
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -83,7 +97,7 @@ valign = 1
 [node name="VBoxButtons" type="VBoxContainer" parent="VBoxPause"]
 margin_top = 210.0
 margin_right = 200.0
-margin_bottom = 372.0
+margin_bottom = 435.0
 custom_constants/separation = 27
 
 [node name="Continuar" type="Button" parent="VBoxPause/VBoxButtons"]
@@ -94,19 +108,28 @@ custom_fonts/font = SubResource( 2 )
 custom_styles/pressed = SubResource( 5 )
 text = "Continuar"
 
-[node name="Volver al menu" type="Button" parent="VBoxPause/VBoxButtons"]
+[node name="Settings" type="Button" parent="VBoxPause/VBoxButtons"]
 margin_top = 63.0
 margin_right = 200.0
 margin_bottom = 99.0
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+text = "Opciones"
+
+[node name="Volver al menu" type="Button" parent="VBoxPause/VBoxButtons"]
+margin_top = 126.0
+margin_right = 200.0
+margin_bottom = 162.0
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 custom_styles/pressed = SubResource( 6 )
 text = "Volver al Menu"
 
 [node name="Salir" type="Button" parent="VBoxPause/VBoxButtons"]
-margin_top = 126.0
+margin_top = 189.0
 margin_right = 200.0
-margin_bottom = 162.0
+margin_bottom = 225.0
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 4 )
 custom_styles/pressed = SubResource( 7 )
@@ -127,9 +150,12 @@ bus = "Sfx"
 stream = ExtResource( 4 )
 bus = "Sfx"
 
+[node name="settings" parent="." instance=ExtResource( 6 )]
+
 [connection signal="button_down" from="VBoxPause/VBoxButtons/Continuar" to="." method="_on_button_down"]
 [connection signal="mouse_entered" from="VBoxPause/VBoxButtons/Continuar" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="VBoxPause/VBoxButtons/Continuar" to="." method="_on_Continuar_pressed"]
+[connection signal="pressed" from="VBoxPause/VBoxButtons/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="button_down" from="VBoxPause/VBoxButtons/Volver al menu" to="." method="_on_button_down"]
 [connection signal="mouse_entered" from="VBoxPause/VBoxButtons/Volver al menu" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="VBoxPause/VBoxButtons/Volver al menu" to="." method="_on_Volver_al_menu_pressed"]

@@ -1,5 +1,7 @@
 extends Control
 
+func _ready():
+	visible = false
 
 func _on_mouse_entered():
 	get_node("AudioMouseOnButton").play()
