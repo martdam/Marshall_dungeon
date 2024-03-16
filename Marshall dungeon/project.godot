@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="tpfinal_pvj3"
-run/main_scene="res://Levels/Main Menu.tscn"
+run/main_scene="res://Levels/Nivel1.tscn"
 
 [display]
 

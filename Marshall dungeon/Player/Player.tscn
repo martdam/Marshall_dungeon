@@ -771,12 +771,12 @@ parameters/Run/blend_position = Vector2( -0.00154084, -0.0038023 )
 
 [node name="AudioPasos" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
-volume_db = 10.0
+volume_db = -8.0
 pitch_scale = 1.6
 
 [node name="AudioDaño" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
-volume_db = 24.0
+volume_db = 1.0
 
 [connection signal="timeout" from="hit_timer" to="." method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="basic_shoot_timer" to="." method="_on_basic_shoot_timer_timeout"]

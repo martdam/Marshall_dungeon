@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 #------------------------------------Vida-------------------------------------------------
 export var alive:bool =true
-export (int, 30, 100) var max_health = 10
+export var max_health =15
 export (int,  0, 100) var health = 30
 signal dead
 
@@ -25,6 +25,7 @@ export (float) var shot_offset = 10
 var ready_shoot_1 = true
 var ready_shoot_2 = true
 
+export var got_power_list = []
 var power_list = []
 var actual_power = 0
 signal Add_new_Power
@@ -34,6 +35,14 @@ export (int, 1,200)var damage = 5
 var status_base = 0
 var status= status_base
 onready var original_stats=[Motion_Speed,damage]
+
+
+
+func _ready():
+	if got_power_list.size()>0:
+		for i in range(0,got_power_list.size(),3):
+			Add_power(got_power_list[i],got_power_list[i+1],got_power_list[i+2])
+			
 
 func _physics_process(delta):
 	
@@ -149,11 +158,12 @@ func hit(damage_taked , atribute, direction):
 func die():
 	emit_signal("dead")
 
-func cure(var hp_restored : int):
+func cure(var hp_restored =max_health ):
 	
-	health += hp_restored;
-	if health > max_health:
+	if health + hp_restored > max_health:
 		health= max_health
+	else:
+		health += hp_restored
 
 
 func Atribe_change(new_status) -> void:

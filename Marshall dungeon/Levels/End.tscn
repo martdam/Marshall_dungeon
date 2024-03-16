@@ -1,0 +1,176 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/Music/sonidos/on button.wav" type="AudioStream" id=1]
+[ext_resource path="res://Assets/UI/Fonts/Spirit's Sword.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Music/sonidos/open menu death.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Music/sonidos/button_up.wav" type="AudioStream" id=4]
+[ext_resource path="res://Ui/Scripts/End_UI.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Music/bkg music/Dream It - TrackTribe.mp3" type="AudioStream" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 29
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "fade-in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "fade-out"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( -17, -6 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0745098, 0.337255, 0, 0.392157 )
+
+[node name="VBoxMenu" type="VBoxContainer" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -372.5
+margin_top = -171.5
+margin_right = 372.5
+margin_bottom = 171.5
+custom_constants/separation = 150
+
+[node name="End Text" type="Label" parent="CanvasLayer/Control/VBoxMenu"]
+margin_right = 745.0
+margin_bottom = 228.0
+custom_fonts/font = SubResource( 1 )
+text = "Has Escapado!
+
+
+
+
+
+"
+align = 1
+valign = 1
+
+[node name="VBoxButtons" type="HBoxContainer" parent="CanvasLayer/Control/VBoxMenu"]
+margin_top = 378.0
+margin_right = 745.0
+margin_bottom = 404.0
+custom_constants/separation = 200
+alignment = 1
+
+[node name="Menu principal" type="Button" parent="CanvasLayer/Control/VBoxMenu/VBoxButtons"]
+margin_left = 182.0
+margin_right = 312.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 2 )
+text = "Menu Principal"
+
+[node name="Salir" type="Button" parent="CanvasLayer/Control/VBoxMenu/VBoxButtons"]
+margin_left = 512.0
+margin_right = 563.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 4 )
+text = "Salir"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control"]
+anims/RESET = SubResource( 5 )
+anims/fade-in = SubResource( 6 )
+anims/fade-out = SubResource( 7 )
+
+[node name="AudioAparecer" type="AudioStreamPlayer" parent="CanvasLayer/Control"]
+stream = ExtResource( 3 )
+volume_db = 16.824
+
+[node name="AudioMouseOnButton" type="AudioStreamPlayer" parent="CanvasLayer/Control"]
+stream = ExtResource( 1 )
+volume_db = 4.0
+
+[node name="AudioButton_Down" type="AudioStreamPlayer" parent="CanvasLayer/Control"]
+stream = ExtResource( 4 )
+
+[node name="BkgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -13.0
+pitch_scale = 1.25
+autoplay = true
+
+[connection signal="button_down" from="CanvasLayer/Control/VBoxMenu/VBoxButtons/Menu principal" to="CanvasLayer/Control" method="_on_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/Control/VBoxMenu/VBoxButtons/Menu principal" to="CanvasLayer/Control" method="_on_mouse_entered"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxMenu/VBoxButtons/Menu principal" to="CanvasLayer/Control" method="_on_Menu_principal_pressed"]
+[connection signal="button_down" from="CanvasLayer/Control/VBoxMenu/VBoxButtons/Salir" to="CanvasLayer/Control" method="_on_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/Control/VBoxMenu/VBoxButtons/Salir" to="CanvasLayer/Control" method="_on_mouse_entered"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxMenu/VBoxButtons/Salir" to="CanvasLayer/Control" method="_on_Salir_pressed"]
+[connection signal="animation_finished" from="CanvasLayer/Control/AnimationPlayer" to="CanvasLayer/Control" method="_on_AnimationPlayer_animation_finished"]

@@ -11,13 +11,12 @@ var spell_count = 0
 signal change_spell_atribute
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_node("TextureProgress").max_value=player.health
+	get_node("TextureProgress").max_value=player.max_health
 
 
 func _process(delta):
 	if is_instance_valid(player):
 		get_node("TextureProgress").value= player.health
-
 
 func _input(event):
 	if event.is_action_pressed("cambiar_att_izq"):
@@ -28,9 +27,7 @@ func _input(event):
 		_change_spell(1)
 		emit_signal("change_spell_atribute",actual_spell)
 
-
 func _change_spell( var sumar):
-
 	
 	if spell_count > 0:
 		actual_spell += sumar
@@ -41,19 +38,13 @@ func _change_spell( var sumar):
 			actual_spell=1
 		
 		match spell_atribute[actual_spell-1]:
-			"Agua":
+			"agua":
 				get_node("TextureProgress/TextureRect").frame=1
 			"fuego":
 				get_node("TextureProgress/TextureRect").frame=2
 			"hielo":
 				get_node("TextureProgress/TextureRect").frame=0
 	
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 
 func _on_Player_Add_new_Power( power_att):
 	spell_atribute.append(power_att)

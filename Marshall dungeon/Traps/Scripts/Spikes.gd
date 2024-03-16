@@ -37,3 +37,5 @@ func _on_trap_core_breaked():
 	change_active()
 
 
+
+	pass # Replace with function body.
