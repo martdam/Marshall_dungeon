@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Ui/Scripts/Menu_Ui.gd" type="Script" id=1]
 [ext_resource path="res://Assets/UI/Fonts/Spirit's Sword.ttf" type="DynamicFontData" id=2]
@@ -85,6 +85,12 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="DynamicFont" id=11]
+size = 25
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
 [node name="Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -113,10 +119,10 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -121.5
-margin_top = -189.0
+margin_top = -236.0
 margin_right = 121.5
-margin_bottom = -67.0
-custom_constants/separation = 50
+margin_bottom = -58.0
+custom_constants/separation = 35
 
 [node name="Nuevo Juego" type="Button" parent="VBoxButtons"]
 margin_right = 243.0
@@ -126,10 +132,19 @@ custom_fonts/font = SubResource( 2 )
 custom_styles/pressed = SubResource( 8 )
 text = "Nuevo Juego"
 
-[node name="Salir" type="Button" parent="VBoxButtons"]
-margin_top = 86.0
+[node name="Creditos" type="Button" parent="VBoxButtons"]
+margin_top = 71.0
 margin_right = 243.0
-margin_bottom = 122.0
+margin_bottom = 107.0
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/pressed = SubResource( 8 )
+text = "Creditos"
+
+[node name="Salir" type="Button" parent="VBoxButtons"]
+margin_top = 142.0
+margin_right = 243.0
+margin_bottom = 178.0
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 9 )
 custom_styles/pressed = SubResource( 10 )
@@ -147,10 +162,61 @@ anims/RESET = SubResource( 4 )
 anims/fade-out = SubResource( 5 )
 anims/fade_in = SubResource( 6 )
 
+[node name="Panel_creditos" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -250.0
+margin_right = 400.0
+margin_bottom = 250.0
+
+[node name="RichTextLabel" type="Label" parent="Panel_creditos"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -208.5
+margin_right = 300.0
+margin_bottom = 208.5
+custom_fonts/font = SubResource( 11 )
+text = "Trabajo practico final para la materia de Programacion de videojuegos 3 de la carrera Tecnicatura en diseño y programacion de videojuegos en la universidad del Litoral.
+
+Diseño y programacion: Martin Damasio
+
+ARTE
+Martin Damasio	
+Laura Jaime
+itch.io/analogStudios_
+		
+MUSICA Y SONIDOS
+Biblioteca gratuita de Youtube
+Damasio Martin"
+align = 1
+autowrap = true
+
+[node name="Cerrar" type="Button" parent="Panel_creditos"]
+margin_left = 628.0
+margin_top = 479.0
+margin_right = 871.0
+margin_bottom = 515.0
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+text = "Cerrar"
+
 [connection signal="button_down" from="VBoxButtons/Nuevo Juego" to="." method="_on_button_down"]
 [connection signal="mouse_entered" from="VBoxButtons/Nuevo Juego" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="VBoxButtons/Nuevo Juego" to="." method="_on_Nuevo_Juego_pressed"]
+[connection signal="button_down" from="VBoxButtons/Creditos" to="." method="_on_button_down"]
+[connection signal="mouse_entered" from="VBoxButtons/Creditos" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="VBoxButtons/Creditos" to="." method="_on_Creditos_pressed"]
 [connection signal="button_down" from="VBoxButtons/Salir" to="." method="_on_button_down"]
 [connection signal="mouse_entered" from="VBoxButtons/Salir" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="VBoxButtons/Salir" to="." method="_on_Salir_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="button_down" from="Panel_creditos/Cerrar" to="." method="_on_button_down"]
+[connection signal="mouse_entered" from="Panel_creditos/Cerrar" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Panel_creditos/Cerrar" to="." method="_on_Cerrar_pressed"]
