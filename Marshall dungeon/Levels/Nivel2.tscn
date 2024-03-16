@@ -13221,6 +13221,7 @@ stream = ExtResource( 21 )
 volume_db = -10.0
 pitch_scale = 0.95
 autoplay = true
+bus = "Music"
 
 [connection signal="change_lvl" from="Goal" to="CanvasLayer/ChangeLvl_UI" method="_on_Goal_change_lvl"]
 [connection signal="change_txt" from="Text_area_1" to="CanvasLayer/Text_Ui" method="_on_Text_area_change_txt"]

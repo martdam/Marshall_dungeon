@@ -79,6 +79,7 @@ texture = ExtResource( 2 )
 
 [node name="AudioPick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+bus = "Sfx"
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 0, 12 )

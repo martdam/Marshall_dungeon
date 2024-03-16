@@ -18525,6 +18525,7 @@ position = Vector2( 1032, -327 )
 stream = ExtResource( 21 )
 volume_db = -12.0
 autoplay = true
+bus = "Music"
 
 [connection signal="change_spell_atribute" from="CanvasLayer/Player_ui" to="Player" method="_on_Control_change_spell_atribute"]
 [connection signal="change_lvl" from="Goal" to="CanvasLayer/ChangeLvl_UI" method="_on_Goal_change_lvl"]

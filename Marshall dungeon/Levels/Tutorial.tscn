@@ -13086,6 +13086,7 @@ position = Vector2( 845, -168 )
 stream = ExtResource( 7 )
 volume_db = -12.0
 autoplay = true
+bus = "Music"
 
 [connection signal="Add_new_Power" from="Player" to="CanvasLayer/Player_ui" method="_on_Player_Add_new_Power"]
 [connection signal="dead" from="Player" to="CanvasLayer/Death Menu" method="_on_Player_dead"]

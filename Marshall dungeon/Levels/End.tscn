@@ -149,8 +149,8 @@ custom_constants/separation = 200
 alignment = 1
 
 [node name="Menu principal" type="Button" parent="CanvasLayer/Control/VBoxMenu/VBoxButtons"]
-margin_left = 130.0
-margin_right = 316.0
+margin_left = 144.0
+margin_right = 330.0
 margin_bottom = 36.0
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
@@ -158,8 +158,8 @@ custom_styles/pressed = SubResource( 8 )
 text = "Menu Principal"
 
 [node name="Salir" type="Button" parent="CanvasLayer/Control/VBoxMenu/VBoxButtons"]
-margin_left = 500.0
-margin_right = 660.0
+margin_left = 530.0
+margin_right = 600.0
 margin_bottom = 36.0
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 4 )
@@ -187,6 +187,7 @@ stream = ExtResource( 6 )
 volume_db = -10.0
 pitch_scale = 1.25
 autoplay = true
+bus = "Music"
 
 [connection signal="button_down" from="CanvasLayer/Control/VBoxMenu/VBoxButtons/Menu principal" to="CanvasLayer/Control" method="_on_button_down"]
 [connection signal="mouse_entered" from="CanvasLayer/Control/VBoxMenu/VBoxButtons/Menu principal" to="CanvasLayer/Control" method="_on_mouse_entered"]

@@ -25,6 +25,7 @@ frame = 1
 
 [node name="AudioPress" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+bus = "Sfx"
 
 [connection signal="body_entered" from="." to="." method="_on_pressure_plate_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_pressure_plate_body_exited"]

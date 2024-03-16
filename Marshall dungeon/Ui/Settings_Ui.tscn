@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Ui/Scripts/Settings_Ui.gd" type="Script" id=1]
+[ext_resource path="res://Assets/UI/Fonts/Spirit's Sword.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Music/sonidos/press button.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Music/sonidos/on button.wav" type="AudioStream" id=4]
+[ext_resource path="res://Ui/volumeBar.tscn" type="PackedScene" id=5]
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.152941, 0.152941, 0.203922, 1 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 30
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 1 )
+
+[node name="settings" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Panel_Settings" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -250.0
+margin_right = 400.0
+margin_bottom = 250.0
+custom_styles/panel = SubResource( 11 )
+
+[node name="Cerrar" type="Button" parent="Panel_Settings"]
+margin_left = 619.0
+margin_top = 437.0
+margin_right = 774.0
+margin_bottom = 473.0
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+text = "Cerrar"
+
+[node name="vol_bar" parent="Panel_Settings" instance=ExtResource( 5 )]
+margin_left = 262.0
+margin_top = 95.0
+margin_right = -275.0
+margin_bottom = -405.0
+bus_name_index = "Master"
+
+[node name="vol_bar2" parent="Panel_Settings" instance=ExtResource( 5 )]
+margin_left = 261.0
+margin_top = 191.0
+margin_right = -276.0
+margin_bottom = -309.0
+
+[node name="vol_bar3" parent="Panel_Settings" instance=ExtResource( 5 )]
+margin_left = 261.0
+margin_top = 288.0
+margin_right = -276.0
+margin_bottom = -212.0
+bus_name_index = "Sfx"
+
+[node name="AudioMouseOnButton" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+bus = "Sfx"
+
+[node name="AudioButton_Down" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Sfx"
+
+[connection signal="button_down" from="Panel_Settings/Cerrar" to="." method="_on_button_down"]
+[connection signal="mouse_entered" from="Panel_Settings/Cerrar" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Panel_Settings/Cerrar" to="." method="_on_Cerrar_pressed"]

@@ -18538,6 +18538,7 @@ scale = Vector2( 0.666667, 0.666667 )
 stream = ExtResource( 21 )
 volume_db = -11.0
 autoplay = true
+bus = "Music"
 
 [node name="Little_Dragon" parent="." instance=ExtResource( 4 )]
 material = SubResource( 10 )

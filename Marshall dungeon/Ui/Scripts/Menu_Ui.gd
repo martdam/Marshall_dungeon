@@ -33,3 +33,8 @@ func _on_Creditos_pressed():
 
 func _on_Cerrar_pressed():
 	get_node("Panel_creditos").visible=false
+
+
+func _on_Settings_pressed():
+	get_node("settings").visible=true
+	

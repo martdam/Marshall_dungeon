@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Ui/Scripts/Menu_Ui.gd" type="Script" id=1]
 [ext_resource path="res://Assets/UI/Fonts/Spirit's Sword.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/Music/sonidos/press button.wav" type="AudioStream" id=3]
 [ext_resource path="res://Assets/Music/sonidos/on button.wav" type="AudioStream" id=4]
+[ext_resource path="res://Ui/Settings_Ui.tscn" type="PackedScene" id=5]
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.207843, 0.207843, 0.25098, 1 )
@@ -39,6 +40,15 @@ border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.152941, 0.152941, 0.203922, 1 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 25
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -85,12 +95,6 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=11]
-size = 25
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 2 )
-
 [node name="Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -122,7 +126,7 @@ margin_left = -121.5
 margin_top = -236.0
 margin_right = 121.5
 margin_bottom = -58.0
-custom_constants/separation = 35
+custom_constants/separation = 20
 
 [node name="Nuevo Juego" type="Button" parent="VBoxButtons"]
 margin_right = 243.0
@@ -133,34 +137,31 @@ custom_styles/pressed = SubResource( 8 )
 text = "Nuevo Juego"
 
 [node name="Creditos" type="Button" parent="VBoxButtons"]
-margin_top = 71.0
+margin_top = 56.0
 margin_right = 243.0
-margin_bottom = 107.0
+margin_bottom = 92.0
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
 custom_styles/pressed = SubResource( 8 )
 text = "Creditos"
 
-[node name="Salir" type="Button" parent="VBoxButtons"]
-margin_top = 142.0
+[node name="Settings" type="Button" parent="VBoxButtons"]
+margin_top = 112.0
 margin_right = 243.0
-margin_bottom = 178.0
+margin_bottom = 148.0
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/pressed = SubResource( 8 )
+text = "Opciones"
+
+[node name="Salir" type="Button" parent="VBoxButtons"]
+margin_top = 168.0
+margin_right = 243.0
+margin_bottom = 204.0
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 9 )
 custom_styles/pressed = SubResource( 10 )
 text = "Salir"
-
-[node name="AudioMouseOnButton" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-volume_db = -10.0
-
-[node name="AudioButton_Down" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 4 )
-anims/fade-out = SubResource( 5 )
-anims/fade_in = SubResource( 6 )
 
 [node name="Panel_creditos" type="Panel" parent="."]
 anchor_left = 0.5
@@ -171,6 +172,7 @@ margin_left = -400.0
 margin_top = -250.0
 margin_right = 400.0
 margin_bottom = 250.0
+custom_styles/panel = SubResource( 12 )
 
 [node name="RichTextLabel" type="Label" parent="Panel_creditos"]
 anchor_left = 0.5
@@ -198,14 +200,37 @@ align = 1
 autowrap = true
 
 [node name="Cerrar" type="Button" parent="Panel_creditos"]
-margin_left = 628.0
-margin_top = 479.0
-margin_right = 871.0
-margin_bottom = 515.0
+margin_left = 654.0
+margin_top = 445.0
+margin_right = 774.0
+margin_bottom = 481.0
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 9 )
 custom_styles/pressed = SubResource( 10 )
 text = "Cerrar"
+
+[node name="settings" parent="." instance=ExtResource( 5 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -121.5
+margin_right = 121.5
+
+[node name="AudioMouseOnButton" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+bus = "Sfx"
+
+[node name="AudioButton_Down" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Sfx"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/fade-out = SubResource( 5 )
+anims/fade_in = SubResource( 6 )
 
 [connection signal="button_down" from="VBoxButtons/Nuevo Juego" to="." method="_on_button_down"]
 [connection signal="mouse_entered" from="VBoxButtons/Nuevo Juego" to="." method="_on_mouse_entered"]
@@ -213,10 +238,13 @@ text = "Cerrar"
 [connection signal="button_down" from="VBoxButtons/Creditos" to="." method="_on_button_down"]
 [connection signal="mouse_entered" from="VBoxButtons/Creditos" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="VBoxButtons/Creditos" to="." method="_on_Creditos_pressed"]
+[connection signal="button_down" from="VBoxButtons/Settings" to="." method="_on_button_down"]
+[connection signal="mouse_entered" from="VBoxButtons/Settings" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="VBoxButtons/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="button_down" from="VBoxButtons/Salir" to="." method="_on_button_down"]
 [connection signal="mouse_entered" from="VBoxButtons/Salir" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="VBoxButtons/Salir" to="." method="_on_Salir_pressed"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="button_down" from="Panel_creditos/Cerrar" to="." method="_on_button_down"]
 [connection signal="mouse_entered" from="Panel_creditos/Cerrar" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="Panel_creditos/Cerrar" to="." method="_on_Cerrar_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

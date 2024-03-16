@@ -134,5 +134,6 @@ anims/RESET = SubResource( 2 )
 stream = ExtResource( 3 )
 volume_db = 10.0
 pitch_scale = 1.5
+bus = "Sfx"
 
 [connection signal="body_entered" from="." to="." method="_on_fire_expl_body_entered"]

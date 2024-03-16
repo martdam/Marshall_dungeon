@@ -102,6 +102,7 @@ position = Vector2( 7, 0 )
 stream = ExtResource( 3 )
 volume_db = 10.0
 pitch_scale = 3.0
+bus = "Sfx"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

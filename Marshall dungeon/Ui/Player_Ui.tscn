@@ -33,3 +33,4 @@ frame = 3
 stream = ExtResource( 5 )
 volume_db = -12.235
 pitch_scale = 0.75
+bus = "Sfx"

@@ -181,13 +181,16 @@ anims/fade-out = SubResource( 3 )
 [node name="AudioAparecer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = 16.824
+bus = "Sfx"
 
 [node name="AudioMouseOnButton" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = 4.0
+bus = "Sfx"
 
 [node name="AudioButton_Down" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+bus = "Sfx"
 
 [connection signal="button_down" from="VBoxMenu/VBoxButtons/Menu principal" to="." method="_on_button_down"]
 [connection signal="mouse_entered" from="VBoxMenu/VBoxButtons/Menu principal" to="." method="_on_mouse_entered"]
