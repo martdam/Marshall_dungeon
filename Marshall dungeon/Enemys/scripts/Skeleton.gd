@@ -175,31 +175,31 @@ func Detectar()->void:
 
 #-------------------------movement functions-------------------------
 func navigate(speed = MAX_SPEED):
-	
-	if knock_back and hited:
-		
-		move(direction_hited,delta_t)
-		if global_position.direction_to(direction_hited).x > 0:
-			$Sprite.flip_h=true
-		else:
-			$Sprite.flip_h=false
-		
-	elif path.size()>1:
-		if global_position.direction_to(path[1]).x < 0:
-			$Sprite.flip_h=true
-		else:
-			$Sprite.flip_h=false
-		
-		move(path[1],delta_t)
-		velocity = global_position.direction_to(path[1])* speed
-		if global_position.distance_to(path[1]) <1 :
-			animation_tree.set("parameters/conditions/Run",true);
-			animation_tree.set("parameters/conditions/Idle",false);
-			path.pop_at(0)
-		else:
+	if !animation_tree.get("parameters/conditions/Die"):
+		if knock_back and hited :
 			
-			animation_tree.set("parameters/conditions/Run",false);
-			animation_tree.set("parameters/conditions/Idle",true);
+			move(direction_hited,delta_t)
+			if global_position.direction_to(direction_hited).x > 0:
+				$Sprite.flip_h=true
+			else:
+				$Sprite.flip_h=false
+			
+		elif path.size()>1:
+			if global_position.direction_to(path[1]).x < 0:
+				$Sprite.flip_h=true
+			else:
+				$Sprite.flip_h=false
+			
+			move(path[1],delta_t)
+			velocity = global_position.direction_to(path[1])* speed
+			if global_position.distance_to(path[1]) <1 :
+				animation_tree.set("parameters/conditions/Run",true);
+				animation_tree.set("parameters/conditions/Idle",false);
+				path.pop_at(0)
+			else:
+				
+				animation_tree.set("parameters/conditions/Run",false);
+				animation_tree.set("parameters/conditions/Idle",true);
 
 func move(target,delta, speed = MAX_SPEED) -> void:
 	var direction:Vector2 = (target -global_position).normalized()
@@ -223,7 +223,7 @@ func Chase():
 
 func Dodge():
 	if!Ready_to_attack:
-		if path[path.size()-1] .distance_to(get_circle_position(random_num,50)) > 40:
+		if path.size()-1>0 and path[path.size()-1] .distance_to(get_circle_position(random_num,50)) > 40:
 			point =get_circle_position(random_num,50)
 			generate_path()
 		navigate()
@@ -337,6 +337,7 @@ func apply_status():
 			afectar_propiedades(MAX_SPEED*0.6,damage)
 		_:
 			color_stat = Color.white
+			restore_properties()
 	
 	material.set_shader_param("color",color_stat)
 	$Status_Timer.start(10)
@@ -385,7 +386,8 @@ func _on_Attack_Timer_timeout():
 	Ready_to_attack = true
 
 func _on_Status_Timer_timeout():
-	restore_properties()
+	status = 0
+	apply_status()
 
 func _on_Burn_Timer_timeout():
 	burning()

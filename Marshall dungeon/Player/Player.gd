@@ -200,9 +200,10 @@ func apply_status():
 			afectar_propiedades(Motion_Speed*0.65,damage)
 		_:
 			color_stat = Color.white
+			restore_properties()
 	
 	material.set_shader_param("color",color_stat)
-	$Status_Timer.start(10)
+	$Status_Timer.start(5)
 
 func afectar_propiedades(afected_vel:float, afected_dmg:int, congelar:bool =false):
 	Motion_Speed = afected_vel 
@@ -259,6 +260,7 @@ func _on_Special_soot_Timer_timeout():
 
 func _on_Status_Timer_timeout():
 	status = 0
+	apply_status()
 
 func _on_Burn_Timer_timeout():
 	burning()

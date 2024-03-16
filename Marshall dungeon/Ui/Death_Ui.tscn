@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Ui/Scripts/Death_Ui.gd" type="Script" id=1]
 [ext_resource path="res://Assets/UI/Fonts/Spirit's Sword.ttf" type="DynamicFontData" id=2]
@@ -13,22 +13,43 @@ use_filter = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 20
+size = 30
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="DynamicFont" id=6]
-size = 20
+size = 30
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
 
+[sub_resource type="StyleBoxFlat" id=9]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 1 )
+
 [sub_resource type="DynamicFont" id=7]
-size = 20
+size = 30
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -122,28 +143,34 @@ valign = 1
 [node name="VBoxButtons" type="VBoxContainer" parent="VBoxMenu"]
 margin_top = 180.0
 margin_right = 496.0
-margin_bottom = 358.0
+margin_bottom = 388.0
 custom_constants/separation = 50
 alignment = 1
 
 [node name="Menu principal" type="Button" parent="VBoxMenu/VBoxButtons"]
 margin_right = 496.0
-margin_bottom = 26.0
+margin_bottom = 36.0
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 5 )
+custom_styles/pressed = SubResource( 8 )
 text = "Menu Principal"
 
 [node name="Restart" type="Button" parent="VBoxMenu/VBoxButtons"]
-margin_top = 76.0
+margin_top = 86.0
 margin_right = 496.0
-margin_bottom = 102.0
+margin_bottom = 122.0
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 6 )
+custom_styles/pressed = SubResource( 9 )
 text = "Volver a Empezar"
 
 [node name="Salir" type="Button" parent="VBoxMenu/VBoxButtons"]
-margin_top = 152.0
+margin_top = 172.0
 margin_right = 496.0
-margin_bottom = 178.0
+margin_bottom = 208.0
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 7 )
+custom_styles/pressed = SubResource( 10 )
 text = "Salir"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

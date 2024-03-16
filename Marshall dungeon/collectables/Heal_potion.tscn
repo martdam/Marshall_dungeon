@@ -64,6 +64,7 @@ tracks/1/keys = {
 }
 
 [node name="Heal_Potion" type="Area2D"]
+z_index = 1
 collision_layer = 32
 script = ExtResource( 1 )
 

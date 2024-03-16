@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Ui/Scripts/Pause_Ui.gd" type="Script" id=1]
 [ext_resource path="res://Assets/UI/Fonts/Spirit's Sword.ttf" type="DynamicFontData" id=2]
@@ -18,17 +18,38 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
 
+[sub_resource type="StyleBoxFlat" id=5]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 1 )
+
 [sub_resource type="DynamicFont" id=3]
 size = 30
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
 
+[sub_resource type="StyleBoxFlat" id=6]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 1 )
+
 [sub_resource type="DynamicFont" id=4]
 size = 30
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 1 )
 
 [node name="Pause_UI" type="Control"]
 anchor_right = 1.0
@@ -68,21 +89,27 @@ custom_constants/separation = 27
 [node name="Continuar" type="Button" parent="VBoxPause/VBoxButtons"]
 margin_right = 200.0
 margin_bottom = 36.0
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
+custom_styles/pressed = SubResource( 5 )
 text = "Continuar"
 
 [node name="Volver al menu" type="Button" parent="VBoxPause/VBoxButtons"]
 margin_top = 63.0
 margin_right = 200.0
 margin_bottom = 99.0
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
+custom_styles/pressed = SubResource( 6 )
 text = "Volver al Menu"
 
 [node name="Salir" type="Button" parent="VBoxPause/VBoxButtons"]
 margin_top = 126.0
 margin_right = 200.0
 margin_bottom = 162.0
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 4 )
+custom_styles/pressed = SubResource( 7 )
 text = "Salir"
 
 [node name="AudioAparecer" type="AudioStreamPlayer" parent="."]

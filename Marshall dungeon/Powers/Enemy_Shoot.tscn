@@ -385,6 +385,7 @@ graph_offset = Vector2( 31, -17 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=30]
 
 [node name="Node2D" type="Area2D"]
+z_index = 2
 collision_layer = 16
 script = ExtResource( 1 )
 
@@ -420,12 +421,15 @@ parameters/conditions/Ice = false
 parameters/conditions/Normal = false
 parameters/conditions/Water = false
 
-[node name="AudioSpawn" type="AudioStreamPlayer" parent="."]
+[node name="AudioSpawn1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
-volume_db = -11.47
-pitch_scale = 1.24
+volume_db = -5.0
 
-[node name="AudioChoque" type="AudioStreamPlayer" parent="."]
+[node name="AudioSpawn2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+pitch_scale = 0.7
+
+[node name="AudioChoque" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 volume_db = 5.0
 

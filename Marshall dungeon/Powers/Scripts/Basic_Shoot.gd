@@ -55,7 +55,7 @@ func _end():
 		var explosion = explosion_power.instance()
 		explosion.rotation = rotation
 		explosion.position = position
-		get_tree().current_scene.add_child(explosion)
+		get_tree().current_scene.call_deferred("add_child",explosion)
 	visible=false
 	set_collision_layer_bit(4,false)
 	yield(get_tree().create_timer(0.1), "timeout")

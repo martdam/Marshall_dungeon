@@ -6,7 +6,8 @@
 [ext_resource path="res://Assets/Music/sonidos/hurt_enemies.wav" type="AudioStream" id=4]
 [ext_resource path="res://Assets/Music/sonidos/muerte eskeletos.wav" type="AudioStream" id=5]
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=57]
+resource_local_to_scene = true
 shader = ExtResource( 3 )
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/froze = false
@@ -345,10 +346,12 @@ graph_offset = Vector2( -75.6413, -22.4595 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 
 [node name="Skeleton_N" type="KinematicBody2D"]
-material = SubResource( 6 )
+material = SubResource( 57 )
+z_index = 2
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
+MAX_SPEED = 60.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -366,6 +369,7 @@ cast_to = Vector2( 100, 0 )
 collision_mask = 3
 
 [node name="Detection_Area" type="Area2D" parent="."]
+z_index = -1
 collision_layer = 0
 monitorable = false
 
@@ -376,6 +380,7 @@ shape = SubResource( 42 )
 visible = false
 position = Vector2( -1, -4 )
 scale = Vector2( 0.688694, 0.774788 )
+z_index = -1
 collision_layer = 0
 collision_mask = 3
 monitorable = false

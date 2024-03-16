@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Traps/Scripts/trap_core.gd" type="Script" id=1]
 [ext_resource path="res://Assets/otros/trap_core.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Music/sonidos/Cojer_obj_2.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 5 )
@@ -140,24 +141,28 @@ advance_condition = "Activado"
 [sub_resource type="AnimationNodeStateMachineTransition" id=20]
 advance_condition = "Activado"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+advance_condition = "Activado"
+
 [sub_resource type="AnimationNodeStateMachine" id=7]
 states/activated/node = SubResource( 17 )
-states/activated/position = Vector2( 641, 106 )
+states/activated/position = Vector2( 642, 78 )
 states/agua/node = SubResource( 9 )
-states/agua/position = Vector2( 453, 165 )
+states/agua/position = Vector2( 448, 210 )
 states/fuego/node = SubResource( 10 )
-states/fuego/position = Vector2( 453, 48 )
+states/fuego/position = Vector2( 448, 11 )
 states/hielo/node = SubResource( 11 )
-states/hielo/position = Vector2( 453, 106 )
+states/hielo/position = Vector2( 448, 131 )
 states/neutral/node = SubResource( 12 )
-states/neutral/position = Vector2( 267, 106 )
-transitions = [ "neutral", "fuego", SubResource( 13 ), "neutral", "hielo", SubResource( 14 ), "neutral", "agua", SubResource( 15 ), "fuego", "activated", SubResource( 18 ), "hielo", "activated", SubResource( 19 ), "agua", "activated", SubResource( 20 ) ]
+states/neutral/position = Vector2( 230, 78 )
+transitions = [ "neutral", "fuego", SubResource( 13 ), "neutral", "hielo", SubResource( 14 ), "neutral", "agua", SubResource( 15 ), "fuego", "activated", SubResource( 18 ), "hielo", "activated", SubResource( 19 ), "agua", "activated", SubResource( 20 ), "neutral", "activated", SubResource( 21 ) ]
 start_node = "neutral"
-graph_offset = Vector2( 6, -5 )
+graph_offset = Vector2( 6, -59 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 
 [node name="trap_core" type="Area2D"]
+z_index = 1
 collision_layer = 64
 collision_mask = 16
 script = ExtResource( 1 )
@@ -171,7 +176,7 @@ scale = Vector2( 0.5, 0.7 )
 texture = ExtResource( 2 )
 hframes = 10
 vframes = 5
-frame = 30
+frame = 39
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
@@ -192,6 +197,8 @@ parameters/conditions/Fuego = false
 parameters/conditions/Hielo = false
 
 [node name="AudioBreak" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+pitch_scale = 1.88
 
 [connection signal="area_entered" from="." to="." method="_on_trap_core_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_trap_core_body_entered"]

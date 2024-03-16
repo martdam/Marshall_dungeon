@@ -7,6 +7,8 @@ var direction
 var goal
 
 func _ready():
+	
+	$AnimationPlayer.play("wave")
 	direction = global_position.direction_to($Position2D.global_position)
 	goal = $Position2D.global_position
 	get_node("AudioSpawn").play()
@@ -22,4 +24,4 @@ func _on_Timer_timeout():
 func _on_Area2D_body_entered(body):
 	if body.collision_layer & (1^1|1^4):
 		body.hit(damage,atribute,global_position)
-		queue_free()
+

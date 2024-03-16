@@ -3,6 +3,8 @@ extends Area2D
 
 export (int,0,3) var atribute = 0
 
+var breaked=false
+
 signal breaked
 
 # Called when the node enters the scene tree for the first time.
@@ -23,7 +25,6 @@ func _ready():
 #	pass
 
 func disable(atribe):
-	var breaked=false
 	
 	match atribute:
 		1:
@@ -36,7 +37,8 @@ func disable(atribe):
 			if atribe == 2:
 				breaked=true
 		_:
-				breaked=true;
+			print("bre")
+			breaked=true;
 	
 	if breaked:
 		emit_signal("breaked")
@@ -45,7 +47,9 @@ func disable(atribe):
 
 
 func _on_trap_core_area_entered(area):
-	disable(area.atribute)
+	if !breaked:
+		disable(area.atribute)
 
 func _on_trap_core_body_entered(body):
-	disable(body.atribute)
+	if !breaked:
+		disable(body.atribute)

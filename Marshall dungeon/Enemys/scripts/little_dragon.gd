@@ -312,6 +312,7 @@ func apply_status():
 			afectar_propiedades(MAX_SPEED*0.6,damage)
 		_:
 			color_stat = Color.white
+			restore_properties()
 	
 	material.set_shader_param("color",color_stat)
 	$Status_Timer.start(10)
@@ -371,7 +372,8 @@ func _on_Attack_Timer_timeout():
 	Ready_to_attack = true
 
 func _on_Status_Timer_timeout():
-	restore_properties()
+	status = 0
+	apply_status()
 
 func _on_Burn_Timer_timeout():
 	burning()

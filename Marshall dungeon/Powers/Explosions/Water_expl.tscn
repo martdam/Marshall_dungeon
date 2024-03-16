@@ -61,6 +61,7 @@ tracks/1/keys = {
 }
 
 [node name="water_expl" type="KinematicBody2D"]
+z_index = 2
 collision_layer = 16
 collision_mask = 68
 script = ExtResource( 2 )
@@ -72,6 +73,8 @@ texture = ExtResource( 1 )
 hframes = 11
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 68
 
 [node name="CollisionShape2D2" type="CollisionPolygon2D" parent="Area2D"]
 position = Vector2( 2, 0 )
