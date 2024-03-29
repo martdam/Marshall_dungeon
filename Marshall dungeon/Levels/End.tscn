@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/Music/sonidos/on button.wav" type="AudioStream" id=1]
 [ext_resource path="res://Assets/UI/Fonts/Spirit's Sword.ttf" type="DynamicFontData" id=2]
@@ -7,38 +7,34 @@
 [ext_resource path="res://Ui/Scripts/End_UI.gd" type="Script" id=5]
 [ext_resource path="res://Assets/Music/bkg music/Dream It - TrackTribe.mp3" type="AudioStream" id=6]
 [ext_resource path="res://Ui/ChangeLvl_UI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/UI/outro bkg.png" type="Texture" id=8]
+[ext_resource path="res://Assets/UI/Buttons_press.tres" type="StyleBox" id=9]
+[ext_resource path="res://Assets/UI/Buttons_normal.tres" type="StyleBox" id=10]
+[ext_resource path="res://Assets/UI/Buttons_hover.tres" type="StyleBox" id=11]
 
 [sub_resource type="DynamicFont" id=1]
-size = 29
+size = 47
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 30
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
-
-[sub_resource type="StyleBoxFlat" id=8]
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 30
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
-
-[sub_resource type="StyleBoxFlat" id=9]
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -99,8 +95,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[node name="Node2D" type="Node2D"]
-position = Vector2( -17, -6 )
+[node name="Node2D" type="Node"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -111,10 +106,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+[node name="ColorRect" type="TextureRect" parent="CanvasLayer/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.0745098, 0.337255, 0, 0.392157 )
+texture = ExtResource( 8 )
+expand = true
 
 [node name="VBoxMenu" type="VBoxContainer" parent="CanvasLayer/Control"]
 anchor_left = 0.5
@@ -122,14 +118,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -372.5
-margin_top = -171.5
+margin_top = -249.5
 margin_right = 372.5
-margin_bottom = 171.5
-custom_constants/separation = 150
+margin_bottom = 296.5
+custom_constants/separation = 120
 
 [node name="End Text" type="Label" parent="CanvasLayer/Control/VBoxMenu"]
 margin_right = 745.0
-margin_bottom = 228.0
+margin_bottom = 354.0
 custom_fonts/font = SubResource( 1 )
 text = "Has Escapado!
 
@@ -142,28 +138,32 @@ align = 1
 valign = 1
 
 [node name="VBoxButtons" type="HBoxContainer" parent="CanvasLayer/Control/VBoxMenu"]
-margin_top = 378.0
+margin_top = 474.0
 margin_right = 745.0
-margin_bottom = 414.0
+margin_bottom = 516.0
 custom_constants/separation = 200
 alignment = 1
 
 [node name="Menu principal" type="Button" parent="CanvasLayer/Control/VBoxMenu/VBoxButtons"]
 margin_left = 144.0
 margin_right = 330.0
-margin_bottom = 36.0
+margin_bottom = 42.0
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
-custom_styles/pressed = SubResource( 8 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 9 )
+custom_styles/normal = ExtResource( 10 )
 text = "Menu Principal"
 
 [node name="Salir" type="Button" parent="CanvasLayer/Control/VBoxMenu/VBoxButtons"]
 margin_left = 530.0
 margin_right = 600.0
-margin_bottom = 36.0
+margin_bottom = 42.0
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 4 )
-custom_styles/pressed = SubResource( 9 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 9 )
+custom_styles/normal = ExtResource( 10 )
 text = "Salir"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control"]
@@ -187,7 +187,7 @@ stream = ExtResource( 6 )
 volume_db = -10.0
 pitch_scale = 1.25
 autoplay = true
-bus = "Music"
+bus = "Musica"
 
 [connection signal="button_down" from="CanvasLayer/Control/VBoxMenu/VBoxButtons/Menu principal" to="CanvasLayer/Control" method="_on_button_down"]
 [connection signal="mouse_entered" from="CanvasLayer/Control/VBoxMenu/VBoxButtons/Menu principal" to="CanvasLayer/Control" method="_on_mouse_entered"]

@@ -18303,8 +18303,7 @@ shader = ExtResource( 4 )
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/froze = false
 
-[node name="Node2D" type="Node2D"]
-position = Vector2( -17, -6 )
+[node name="Node2D" type="Node"]
 
 [node name="Navigation2D" type="Navigation2D" parent="." groups=["LevelNavigationGroup"]]
 visible = false
@@ -18385,7 +18384,6 @@ margin_bottom = -5.0
 
 [node name="Pause_UI" parent="CanvasLayer" instance=ExtResource( 15 )]
 pause_mode = 2
-visible = false
 
 [node name="ChangeLvl_UI" parent="CanvasLayer" instance=ExtResource( 16 )]
 visible = false
@@ -18525,7 +18523,7 @@ position = Vector2( 1032, -327 )
 stream = ExtResource( 21 )
 volume_db = -12.0
 autoplay = true
-bus = "Music"
+bus = "Musica"
 
 [connection signal="change_spell_atribute" from="CanvasLayer/Player_ui" to="Player" method="_on_Control_change_spell_atribute"]
 [connection signal="change_lvl" from="Goal" to="CanvasLayer/ChangeLvl_UI" method="_on_Goal_change_lvl"]

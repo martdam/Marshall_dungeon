@@ -1,18 +1,20 @@
 extends Control
 
 func _ready():
-	visible = false
+	visible=true
+	get_node("Node").visible = false
+	
 
 func _input(event):
 	if event.is_action_pressed("Pausar"):
 		get_node("AudioAparecer").play()
-		visible= not get_tree().paused
+		get_node("Node").visible = not get_tree().paused
 		get_tree().paused = not get_tree().paused
 
 
 func _on_Continuar_pressed():
 	get_node("AudioAparecer").play()
-	visible= not get_tree().paused
+	get_node("Node").visible= not get_tree().paused
 	get_tree().paused = not get_tree().paused
 
 
@@ -33,5 +35,11 @@ func _on_button_down():
 
 
 func _on_Settings_pressed():
-	get_node("settings").visible=true
+	get_node("Node/settings").visible=true
 	
+
+
+func _on_pausar_pressed():
+	get_node("AudioAparecer").play()
+	get_node("Node").visible = not get_tree().paused
+	get_tree().paused = not get_tree().paused

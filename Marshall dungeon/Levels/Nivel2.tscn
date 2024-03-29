@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Ui/Player_Ui.tscn" type="PackedScene" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://Assets/Escenario/brickTileset.png" type="Texture" id=10]
 [ext_resource path="res://Traps/trap_core.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Enemys/scenas/Skeleton.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Ui/Menu_Ui.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Ui/Death_Ui.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Ui/Pause_Ui.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Ui/ChangeLvl_UI.tscn" type="PackedScene" id=16]
@@ -12977,8 +12976,7 @@ shader = ExtResource( 7 )
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/froze = false
 
-[node name="Node2D" type="Node2D"]
-position = Vector2( -17, -6 )
+[node name="Node2D" type="Node"]
 
 [node name="Navigation2D" type="Navigation2D" parent="." groups=["LevelNavigationGroup"]]
 visible = false
@@ -13082,17 +13080,12 @@ editor_draw_drag_margin = true
 
 [node name="Player_ui" parent="CanvasLayer" instance=ExtResource( 2 )]
 
-[node name="Menu" parent="CanvasLayer" instance=ExtResource( 13 )]
-visible = false
-
 [node name="Death Menu" parent="CanvasLayer" instance=ExtResource( 14 )]
 
 [node name="Pause_UI" parent="CanvasLayer" instance=ExtResource( 15 )]
 pause_mode = 2
-visible = false
 
 [node name="ChangeLvl_UI" parent="CanvasLayer" instance=ExtResource( 16 )]
-visible = false
 
 [node name="Heal_Potion" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1169, -240 )
@@ -13221,7 +13214,7 @@ stream = ExtResource( 21 )
 volume_db = -10.0
 pitch_scale = 0.95
 autoplay = true
-bus = "Music"
+bus = "Musica"
 
 [connection signal="change_lvl" from="Goal" to="CanvasLayer/ChangeLvl_UI" method="_on_Goal_change_lvl"]
 [connection signal="change_txt" from="Text_area_1" to="CanvasLayer/Text_Ui" method="_on_Text_area_change_txt"]

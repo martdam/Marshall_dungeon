@@ -3,7 +3,7 @@
 [ext_resource path="res://Ui/Menu_Ui.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Music/bkg music/Cafe Regrette - Asher Fulero.mp3" type="AudioStream" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -14,4 +14,4 @@ stream = ExtResource( 2 )
 volume_db = -6.882
 pitch_scale = 1.2
 autoplay = true
-bus = "Music"
+bus = "Musica"

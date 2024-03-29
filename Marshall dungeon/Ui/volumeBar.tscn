@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/UI/Fonts/Spirit's Sword.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.215686, 0.215686, 0.294118, 1 )
+bg_color = Color( 0.215686, 0.294118, 0.27451, 1 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 25
@@ -57,7 +57,8 @@ margin_top = 15.0
 margin_right = 145.0
 margin_bottom = 40.0
 custom_fonts/font = SubResource( 1 )
-text = "Music volume"
+text = "1321"
+align = 1
 
 [node name="vol_value" type="Label" parent="Panel_creditos"]
 margin_left = 413.0

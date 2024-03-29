@@ -4,7 +4,7 @@ export var bus_name_index="Music"
 var bus_index : int =0
 onready var h_slider = get_node("Panel_creditos/HSlider")
 onready var value_label = get_node("Panel_creditos/vol_value")
-onready var name_label = get_node("Panel_creditos/vol_value")
+onready var name_label = get_node("Panel_creditos/music_vol")
 
 func _ready():
 	h_slider.connect("value_changed",self,"on_value_change")
@@ -13,7 +13,7 @@ func _ready():
 	set_slider_value()
 
 func set_name_label_txt():
-	name_label.text = bus_name_index + " volumen"
+	name_label.text =  bus_name_index 
 
 func get_bus_name_by_index():
 	bus_index= AudioServer.get_bus_index(bus_name_index)

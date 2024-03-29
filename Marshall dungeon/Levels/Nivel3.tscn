@@ -18358,8 +18358,7 @@ shader = ExtResource( 7 )
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/froze = false
 
-[node name="Node2D" type="Node2D"]
-position = Vector2( -17, -6 )
+[node name="Node2D" type="Node"]
 
 [node name="Navigation2D" type="Navigation2D" parent="." groups=["LevelNavigationGroup"]]
 visible = false
@@ -18448,10 +18447,8 @@ got_power_list = [ "fuego", "res://Powers/Explosions/Fire_expl.tscn", 2, "agua",
 
 [node name="Pause_UI" parent="CanvasLayer" instance=ExtResource( 15 )]
 pause_mode = 2
-visible = false
 
 [node name="ChangeLvl_UI" parent="CanvasLayer" instance=ExtResource( 16 )]
-visible = false
 
 [node name="Heal_Potion" parent="." instance=ExtResource( 22 )]
 position = Vector2( 977, -1166 )
@@ -18534,12 +18531,6 @@ scale = Vector2( 0.666667, 0.666667 )
 position = Vector2( -368, 443.333 )
 scale = Vector2( 0.666667, 0.666667 )
 
-[node name="BkgMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 21 )
-volume_db = -11.0
-autoplay = true
-bus = "Music"
-
 [node name="Little_Dragon" parent="." instance=ExtResource( 4 )]
 material = SubResource( 10 )
 position = Vector2( 530, -428 )
@@ -18599,6 +18590,12 @@ position = Vector2( 975, -894 )
 [node name="Skeleton_N10" parent="." instance=ExtResource( 6 )]
 material = SubResource( 24 )
 position = Vector2( 1073, -710 )
+
+[node name="BkgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+volume_db = -11.0
+autoplay = true
+bus = "Musica"
 
 [connection signal="change_lvl" from="Goal" to="CanvasLayer/ChangeLvl_UI" method="_on_Goal_change_lvl"]
 [connection signal="Add_new_Power" from="Player" to="CanvasLayer/Player_ui" method="_on_Player_Add_new_Power"]
